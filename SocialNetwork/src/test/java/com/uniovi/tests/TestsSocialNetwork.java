@@ -1,5 +1,9 @@
 package com.uniovi.tests;
 
+import static org.junit.Assert.assertTrue;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -9,28 +13,39 @@ import org.junit.FixMethodOrder;
 import org.junit.jupiter.api.Test;
 import org.junit.runners.MethodSorters;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import com.uniovi.entities.User;
+import com.uniovi.repositories.UsersRepository;
+import com.uniovi.services.UsersService;
 import com.uniovi.tests.pageobjects.PO_LoginView;
 import com.uniovi.tests.pageobjects.PO_Properties;
 import com.uniovi.tests.pageobjects.PO_RegisterView;
+import com.uniovi.tests.pageobjects.PO_UserSearchView;
 import com.uniovi.tests.pageobjects.PO_View;
+import com.uniovi.tests.utils.SeleniumUtils;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestsSocialNetwork {
 
 	// Paths Víctor (Comentar cuando se usen los otros)
-	static String PathFirefox65 = "C:\\Program Files\\Mozilla Firefox\\firefox.exe";
-	static String Geckdriver024 = "C:\\Users\\powerservice\\Desktop\\POKEMON\\ATercero"
-			+ "\\SDI\\Práctica5\\OneDrive_2020-02-27\\PL-SDI-Sesio╠ün5-material\\geckodriver024win64.exe";
+//	static String PathFirefox65 = "C:\\Program Files\\Mozilla Firefox\\firefox.exe";
+//	static String Geckdriver024 = "C:\\Users\\powerservice\\Desktop\\POKEMON\\ATercero"
+//			+ "\\SDI\\Práctica5\\OneDrive_2020-02-27\\PL-SDI-Sesio╠ün5-material\\geckodriver024win64.exe";
 
 	// Paths Adnan (Comentar cuando se usen los otros)
 
-//	static String PathFirefox65 = "";
-//	static String Geckdriver024 = "";
+	static String PathFirefox65 = "C:\\Program Files\\Mozilla Firefox\\firefox.exe";
+	static String Geckdriver024 = "C:\\Users\\Adnan\\Downloads\\3º Segundo Semestre\\SDI\\Practica\\Material\\P5\\PL-SDI-Sesión5-material\\geckodriver024win64.exe";
 
 	static WebDriver driver = getDriver(PathFirefox65, Geckdriver024);
 	static String URL = "http://localhost:8090";
+	
+	
+
+	
 
 	public static WebDriver getDriver(String PathFirefox, String Geckdriver) {
 		System.setProperty("webdriver.firefox.bin", PathFirefox);
@@ -42,7 +57,7 @@ public class TestsSocialNetwork {
 	// Antes de cada prueba se navega al URL home de la aplicaciónn
 	// TODO: No me está funcionando el before, cuando funcione, borrar
 	// "driver.navigate()" de todos los tests
-	
+
 	@Before
 	public void setUp() {
 		driver.navigate().to(URL);
@@ -215,7 +230,8 @@ public class TestsSocialNetwork {
 		driver.manage().deleteAllCookies();
 	}
 
-	// PR10. Comprobar que el botón cerrar sesión no está visible si el usuario no está autenticado
+	// PR10. Comprobar que el botón cerrar sesión no está visible si el usuario no
+	// está autenticado
 	@Test
 	public void PR10() {
 		driver.navigate().to(URL);
@@ -224,4 +240,179 @@ public class TestsSocialNetwork {
 
 		driver.manage().deleteAllCookies();
 	}
+
+	// PR11. Mostrar el listado de usuarios y comprobar que se muestran todos los
+	// que existen en el sistema.
+	@Test
+	public void PR11() {
+		driver.navigate().to(URL);
+
+		PO_View.clickOptionWithId(driver, "login", "identifyYourselfLbl");
+
+		PO_LoginView.fillForm(driver, "victorgon@gmail.es", "123456");
+
+		PO_View.checkElementWithId(driver, "authenticatedEmail");
+
+		// Pinchamos en la opción de menu de Usuarios: //li[contains(@id, // 'users-menu')]/a
+		List<WebElement> elementos = PO_View.checkElement(driver, "free", "//li[contains(@id,'users-menu')]/a");
+		elementos.get(0).click();
+		
+		elementos = PO_View.checkElement(driver, "free", "//a[contains(@href, 'user/list')]");
+		// Pinchamos en "Ver Usuarios".
+		elementos.get(0).click();
+		
+		PO_View.checkElementWithId(driver, "listaUsuarios");
+		
+		List<User> users = new ArrayList<User>();
+		
+		
+		int i = 0;
+		for (User user : users) {
+			if(i == 5) {
+				PO_View.clickOptionWithId(driver, "siguiente", "listaUsuarios");
+			}
+			PO_View.checkElement(driver, "text", user.getEmail());
+			i++;
+		}
+		
+		driver.manage().deleteAllCookies();
+	}
+	
+	
+	// PR12. Hacer una búsqueda con el campo vacío y comprobar que se muestra la página 
+	//que corresponde con el listado usuarios existentes en el sistema. 
+		@Test
+		public void PR12() {
+			driver.navigate().to(URL);
+
+			PO_View.clickOptionWithId(driver, "login", "identifyYourselfLbl");
+
+			PO_LoginView.fillForm(driver, "victorgon@gmail.es", "123456");
+
+			PO_View.checkElementWithId(driver, "authenticatedEmail");
+
+			// Pinchamos en la opción de menu de Usuarios: //li[contains(@id, // 'users-menu')]/a
+			List<WebElement> elementos = PO_View.checkElement(driver, "free", "//li[contains(@id,'users-menu')]/a");
+			elementos.get(0).click();
+			
+			elementos = PO_View.checkElement(driver, "free", "//a[contains(@href, 'user/list')]");
+			// Pinchamos en "Ver Usuarios".
+			elementos.get(0).click();
+			
+			PO_View.checkElementWithId(driver, "listaUsuarios");
+			
+			//Pinchamos en buscar
+			PO_View.clickOptionWithId(driver, "buscar", "listaUsuarios");
+			
+			//Comprobar que están todos los usuarios del sistema igual que la P11
+			List<User> users = new ArrayList<User>();
+			
+			
+			int i = 0;
+			for (User user : users) {
+				if(i == 5) {
+					PO_View.clickOptionWithId(driver, "siguiente", "listaUsuarios");
+				}
+				PO_View.checkElement(driver, "text", user.getEmail());
+				i++;
+			}
+			
+			driver.manage().deleteAllCookies();
+		}
+		
+		// PR13. Hacer una búsqueda escribiendo en el campo un texto que no exista y comprobar que se muestra 
+		//la página que corresponde, con la lista de usuarios vacía. 
+			@Test
+			public void PR13() {
+				driver.navigate().to(URL);
+
+				PO_View.clickOptionWithId(driver, "login", "identifyYourselfLbl");
+
+				PO_LoginView.fillForm(driver, "victorgon@gmail.es", "123456");
+
+				PO_View.checkElementWithId(driver, "authenticatedEmail");
+
+				// Pinchamos en la opción de menu de Usuarios: //li[contains(@id, // 'users-menu')]/a
+				List<WebElement> elementos = PO_View.checkElement(driver, "free", "//li[contains(@id,'users-menu')]/a");
+				elementos.get(0).click();
+				
+				elementos = PO_View.checkElement(driver, "free", "//a[contains(@href, 'user/list')]");
+				// Pinchamos en "Ver Usuarios".
+				elementos.get(0).click();
+				
+				PO_View.checkElementWithId(driver, "listaUsuarios");
+				
+				//metemos una cadena que no exista en el campo de búsqueda
+				PO_UserSearchView.fillField(driver, "yyyyyxq");
+				
+				
+				//Comprobar que la tabla está vacía
+				List<User> users = new ArrayList<User>();
+				
+				
+				int i = 0;
+				for (User user : users) {
+					if(i == 5) {
+						PO_View.clickOptionWithId(driver, "siguiente", "listaUsuarios");
+					}
+					SeleniumUtils.textoNoPresentePagina(driver, user.getEmail());
+					i++;
+				}
+				
+				driver.manage().deleteAllCookies();
+			}
+			
+			// PR14. Hacer una búsqueda con un texto específico y comprobar que se muestra la página que corresponde, 
+			//con la lista de usuarios en los que el texto especificados sea parte de su nombre, apellidos o de su email. 
+				@Test
+				public void PR14() {
+					driver.navigate().to(URL);
+
+					PO_View.clickOptionWithId(driver, "login", "identifyYourselfLbl");
+
+					PO_LoginView.fillForm(driver, "victorgon@gmail.es", "123456");
+
+					PO_View.checkElementWithId(driver, "authenticatedEmail");
+
+					// Pinchamos en la opción de menu de Usuarios: //li[contains(@id, // 'users-menu')]/a
+					List<WebElement> elementos = PO_View.checkElement(driver, "free", "//li[contains(@id,'users-menu')]/a");
+					elementos.get(0).click();
+					
+					elementos = PO_View.checkElement(driver, "free", "//a[contains(@href, 'user/list')]");
+					// Pinchamos en "Ver Usuarios".
+					elementos.get(0).click();
+					
+					PO_View.checkElementWithId(driver, "listaUsuarios");
+					
+					//metemos una cadena en el campo de búsqueda para buscar por nombre
+					PO_UserSearchView.fillField(driver, "adnan");
+					
+					
+					//Comprobar que no coincide ningún usuario del sistema con esta búsqueda
+					List<WebElement> elementos2 = SeleniumUtils.EsperaCargaPagina(driver, "free", "//tbody/tr",
+							PO_View.getTimeout());
+					assertTrue(elementos2.size() == 1);
+					
+					//metemos una segunda cadena en el campo de búsqueda para buscar por appellido
+					PO_UserSearchView.fillField(driver, "Gonzalo");
+					
+					
+					//Comprobar que no coincide ningún usuario del sistema con esta búsqueda
+					List<WebElement> elementos3 = SeleniumUtils.EsperaCargaPagina(driver, "free", "//tbody/tr",
+							PO_View.getTimeout());
+					assertTrue(elementos3.size() == 1);
+					
+					//metemos una tercera cadena en el campo de búsqueda para buscar por email
+					PO_UserSearchView.fillField(driver, "gmail");
+					
+					
+					//Comprobar que no coincide ningún usuario del sistema con esta búsqueda
+					List<WebElement> elementos4 = SeleniumUtils.EsperaCargaPagina(driver, "free", "//tbody/tr",
+							PO_View.getTimeout());
+					assertTrue(elementos4.size() == 3);
+					
+					driver.manage().deleteAllCookies();
+				}
+	
+	
 }

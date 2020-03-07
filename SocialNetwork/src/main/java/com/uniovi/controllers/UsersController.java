@@ -2,6 +2,8 @@ package com.uniovi.controllers;
 
 import java.util.LinkedList;
 
+import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -9,6 +11,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -38,17 +41,22 @@ public class UsersController {
 	
 	@Autowired
 	private RolesService rolesService;
+	
+	@Autowired  
+	private HttpSession httpSession;
+	
 
 	@RequestMapping("/user/list")
 	public String getListado(Model model,Pageable pageable, @RequestParam(value = "", required=false) String searchText) {
 		
 		Page<User> users = new PageImpl<User>(new LinkedList<User>());
 		if (searchText != null && !searchText.isEmpty()) {
-			users = usersService.searchUsersByNameOrSurname(pageable,searchText);
+			users = usersService.searchUsersByNameOrSurnameorEmail(pageable,searchText);
 		}
 		else {
 			users = usersService.getUsers(pageable);
 		}
+		
 		
 		model.addAttribute("usersList", users.getContent());
 		model.addAttribute("page", users);
@@ -124,6 +132,7 @@ public class UsersController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(Model model) {
+		
 		return "login";
 	}
 
@@ -132,13 +141,14 @@ public class UsersController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		 String email = auth.getName();
 		 User activeUser = usersService.getUserByEmail(email);
+		httpSession.setAttribute("currentlyUser", activeUser);
 		 //model.addAttribute("markList", activeUser.getMarks());
 		return "home";
 	}
 	
 	@RequestMapping("/user/list/update")
-	public String updateList(Model model){
-	model.addAttribute("usersList", usersService.getUsers() );
+	public String updateList(Model model, Pageable pageable){
+	model.addAttribute("usersList", usersService.getUsers(pageable) );
 	return "user/list :: tableUsers";
 	}
 }
