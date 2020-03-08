@@ -19,6 +19,7 @@ public class SignUpFormValidator implements Validator {
 	@Override
 	public void validate(Object target, Errors errors) {
 		User user = (User) target;
+<<<<<<< HEAD
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "Error.empty");
 		if (usersService.getUserByEmail(user.getEmail()) != null) {
 			errors.rejectValue("email", "Error.signup.email.duplicate");
@@ -26,6 +27,24 @@ public class SignUpFormValidator implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "Error.empty");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lastName", "Error.empty");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "Error.empty");
+=======
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "dni", "Error.empty");
+		if (user.getDni().length() < 5 || user.getDni().length() > 24) {
+			errors.rejectValue("dni", "Error.signup.dni.length");
+		}
+		if (usersService.getUserByDni(user.getDni()) != null) {
+			errors.rejectValue("dni", "Error.signup.dni.duplicate");
+		}
+		if (user.getName().length() < 5 || user.getName().length() > 24) {
+			errors.rejectValue("name", "Error.signup.name.length");
+		}
+		if (user.getLastName().length() < 5 || user.getLastName().length() > 24) {
+			errors.rejectValue("lastName", "Error.signup.lastName.length");
+		}
+		if (user.getPassword().length() < 5 || user.getPassword().length() > 24) {
+			errors.rejectValue("password", "Error.signup.password.length");
+		}
+>>>>>>> branch 'Adnan' of https://github.com/adnanmouloud/proyecto-spring.git
 		if (!user.getPasswordConfirm().equals(user.getPassword())) {
 			errors.rejectValue("passwordConfirm", "Error.signup.passwordConfirm.coincidence");
 		}

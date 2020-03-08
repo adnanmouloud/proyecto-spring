@@ -9,6 +9,7 @@ import com.uniovi.entities.User;
 
 public interface UsersRepository extends CrudRepository<User, Long> {
 
+<<<<<<< HEAD
 	User findByEmail(String email);
 
 	@Query("SELECT u FROM User u WHERE (LOWER (u.name) LIKE LOWER(?1) OR LOWER(u.lastName) LIKE LOWER(?1) OR LOWER(u.email) LIKE LOWER(?1))")
@@ -21,4 +22,12 @@ public interface UsersRepository extends CrudRepository<User, Long> {
 	Page<User> findAllMinusAdminAndUserAuthenticated(Pageable pageable, String email);
 
 
+=======
+	User findByDni(String dni);
+
+	@Query("SELECT u FROM User u WHERE (LOWER (u.name) LIKE LOWER(?1) OR LOWER(u.lastName) LIKE LOWER(?1))")
+	Page<User> searchUsersByNameOrSurname(Pageable pageable, String searchText);
+
+	Page<User> findAll(Pageable pageable);
+>>>>>>> branch 'Adnan' of https://github.com/adnanmouloud/proyecto-spring.git
 }
