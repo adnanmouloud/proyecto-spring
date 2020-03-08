@@ -10,9 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.uniovi</groupId>
-	<artifactId>sdi1920-912-lab-spring</artifactId>
+	<artifactId>SocialNetwork</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>sdi1920-912-lab-spring</name>
+	<name>SocialNetwork</name>
 	<description>Aplicación de tipo red social</description>
 
 	<properties>
