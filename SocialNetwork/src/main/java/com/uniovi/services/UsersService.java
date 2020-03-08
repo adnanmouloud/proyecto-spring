@@ -1,22 +1,21 @@
 package com.uniovi.services;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.support.PagedListHolder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.uniovi.entities.InvitationFriendship;
 import com.uniovi.entities.User;
 import com.uniovi.repositories.UsersRepository;
 
@@ -98,6 +97,38 @@ public class UsersService {
 		
 		
 		return users;
+	}
+
+
+	/**
+	 * 
+	 * @param currentlyUser
+	 * @param content
+	 * @return usuarios que han recibido una solicitud del usuario en sesión
+	 */
+	public Set<User> getUsersReceivedFriendshipFromCurrentlyUser(User currentlyUser, List<User> content) {
+
+		Set<User> usersWhoCouldReceiveARequest = getUsersWhoCouldReceiveARequestByActiveUser(currentlyUser);
+		Set<User> requestedUsersFromCurrentlyUser = new HashSet<User>();
+		
+		for (User u : usersWhoCouldReceiveARequest) {
+			if (content.contains(u)) {
+				requestedUsersFromCurrentlyUser.add(u);
+			}
+
+		}
+		return requestedUsersFromCurrentlyUser;
+	}
+
+
+
+	private Set<User> getUsersWhoCouldReceiveARequestByActiveUser(User currentlyUser) {
+		Set<User> listaUsuarios = new HashSet<User>();
+		
+		for (InvitationFriendship ifs : currentlyUser.getListaSolicitudesEnviadas()) {
+			listaUsuarios.add(ifs.getReceptor());
+		}
+		return listaUsuarios;
 	}
 	
 }

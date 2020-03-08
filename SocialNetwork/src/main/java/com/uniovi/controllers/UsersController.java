@@ -1,8 +1,9 @@
 package com.uniovi.controllers;
 
+import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.Set;
 
-import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,6 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.uniovi.entities.User;
+import com.uniovi.services.InvitationFriendshipService;
 import com.uniovi.services.RolesService;
 import com.uniovi.services.SecurityService;
 import com.uniovi.services.UsersService;
@@ -45,6 +46,9 @@ public class UsersController {
 	@Autowired  
 	private HttpSession httpSession;
 	
+	@Autowired
+	private InvitationFriendshipService invitationFriendshipService;
+	
 
 	@RequestMapping("/user/list")
 	public String getListado(Model model,Pageable pageable, @RequestParam(value = "", required=false) String searchText) {
@@ -57,7 +61,25 @@ public class UsersController {
 			users = usersService.getUsers(pageable);
 		}
 		
+		User currentlyUser = (User) httpSession.getAttribute("currentlyUser");
 		
+		//usuarios que me han enviado una solicitud de amistad
+		Set<User> usersReceivedRequestFriendship = invitationFriendshipService.getUserSendedRequest(currentlyUser, users.getContent());
+		
+		//usuarios a los que he enviado una solicitud de amistad
+		Set<User> usersRequestedFriendship = usersService.getUsersReceivedFriendshipFromCurrentlyUser(currentlyUser, users.getContent());
+		
+		//amigos
+		//Set<User> friendsInPage = invitationFriendshipService.getFriends(currentlyUser, users.getContent()) ;
+
+		Set<User> todasPendientes = new HashSet<User>();
+		
+		usersReceivedRequestFriendship.forEach(todasPendientes::add);
+		usersRequestedFriendship.forEach(todasPendientes::add);
+		
+
+		//model.addAttribute("friendList", friendsInPage);
+		model.addAttribute("pendientes", todasPendientes);
 		model.addAttribute("usersList", users.getContent());
 		model.addAttribute("page", users);
 

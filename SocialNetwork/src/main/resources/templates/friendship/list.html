@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="fragments/head" />
+<body>
+	<!-- Barra de Navegación superior -->
+	<nav th:replace="fragments/nav" />
+	<div class="container">
+		<h2 id="listaSolicitudes">Solicitudes</h2>
+		<form class="navbar-form" action="/friendship/list">
+			<div class="form-group">
+				<input id="searchField" name="searchText" type="text"
+					class="form-control" size="50"
+					placeholder="Buscar por nombre del usuario">
+			</div>
+			<button id="buscar" type="submit" class="btn btn-default">Buscar</button>
+		</form>
+		<p>Las solicitudes que actualmente figuran en el sistema son las
+			siguientes:</p>
+		<button type="button" id="updateButton" class="btn btn-default">Actualizar</button>
+		<script>
+			$("#updateButton").click(function() {
+				$("#tableInvitations").load('/friendship/list/update');
+			});
+		</script>
+
+		<div class="table-responsive">
+			<table class="table table-hover" th:fragment="tableInivitations"
+				id="tableInivitations">
+				<thead>
+					<tr>
+
+						<th>Nombre</th>
+						<th class="col-md-1"></th>
+					
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="invitation : ${invitationsList}">
+
+						<td th:text="${inivitation.emisor}">Nombre</td>
+
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<footer th:replace="fragments/pagination" />
+	</div>
+	<footer th:replace="fragments/footer" />
+</body>
+</html>

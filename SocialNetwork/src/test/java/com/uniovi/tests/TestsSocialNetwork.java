@@ -413,6 +413,62 @@ public class TestsSocialNetwork {
 					
 					driver.manage().deleteAllCookies();
 				}
+				
+				
+				// PR15. Desde el listado de usuarios de la aplicación, enviar una invitación de amistad a un usuario.
+				// Comprobar que la solicitud de amistad aparece en el listado de invitaciones (punto siguiente). 
+					@Test
+					public void PR15() {
+						driver.navigate().to(URL);
+
+						PO_View.clickOptionWithId(driver, "login", "identifyYourselfLbl");
+
+						PO_LoginView.fillForm(driver, "victorgon@gmail.es", "123456");
+
+						PO_View.checkElementWithId(driver, "authenticatedEmail");
+
+						// Pinchamos en la opción de menu de Usuarios: //li[contains(@id, // 'users-menu')]/a
+						List<WebElement> elementos = PO_View.checkElement(driver, "free", "//li[contains(@id,'users-menu')]/a");
+						elementos.get(0).click();
+						
+						elementos = PO_View.checkElement(driver, "free", "//a[contains(@href, 'user/list')]");
+						// Pinchamos en "Ver Usuarios".
+						elementos.get(0).click();
+						
+						PO_View.checkElementWithId(driver, "listaUsuarios");
+						
+						PO_View.clickOptionWithId(driver, "addButton", "identifyYourselfLbl");
+						
+						driver.manage().deleteAllCookies();
+					}
+					
+					// PR16. Desde el listado de usuarios de la aplicación, enviar una invitación de amistad a un usuario al
+					// que ya le habíamos enviado la invitación previamente. No debería dejarnos enviar la invitación, se podría
+					// ocultar el botón de enviar invitación o notificar que ya había sido enviada previamente. 
+						@Test
+						public void PR16() {
+							driver.navigate().to(URL);
+
+							PO_View.clickOptionWithId(driver, "login", "identifyYourselfLbl");
+
+							PO_LoginView.fillForm(driver, "victorgon@gmail.es", "123456");
+
+							PO_View.checkElementWithId(driver, "authenticatedEmail");
+
+							// Pinchamos en la opción de menu de Usuarios: //li[contains(@id, // 'users-menu')]/a
+							List<WebElement> elementos = PO_View.checkElement(driver, "free", "//li[contains(@id,'users-menu')]/a");
+							elementos.get(0).click();
+							
+							elementos = PO_View.checkElement(driver, "free", "//a[contains(@href, 'user/list')]");
+							// Pinchamos en "Ver Usuarios".
+							elementos.get(0).click();
+							
+							PO_View.checkElementWithId(driver, "listaUsuarios");
+							
+							
+							
+							driver.manage().deleteAllCookies();
+						}
 	
 	
 }
