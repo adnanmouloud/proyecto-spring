@@ -6,8 +6,7 @@
 	<nav th:replace="fragments/nav" />
 	<div class="container">
 		<h2 id="listaSolicitudes">Solicitudes</h2>
-		<form class="navbar-form" action="/friendship/list">
-		</form>
+		<form class="navbar-form" action="/friendship/list"></form>
 		<p>Las solicitudes que actualmente figuran en el sistema son las
 			siguientes:</p>
 		<button type="button" id="updateButton" class="btn btn-default">Actualizar</button>
@@ -30,14 +29,41 @@
 
 						<th>Nombre</th>
 						<th class="col-md-1"></th>
-					
+
 
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="invitation : ${invitationsList}">
+					<tr th:each="invitation : ${invitationsList}" th:id="${'invitation' + invitation.emisor.id}">
 
-						<td th:text="${invitation?.emisor}">Nombre</td>
+						<td th:text="${invitation.emisor}">Nombre</td>
+						<td>
+						<div></div>
+							<div>
+								<button type="button" th:id="${'acceptButton' + invitation.emisor.id}"
+									class="btn btn-info btn-block"
+									th:text='#{users.list.acceptFriendship}'></button>
+								<script th:inline="javascript">
+										/*<![CDATA[*/$(
+												"#acceptButton[[${invitation.emisor.id}]]")
+												.click(
+														function() {				
+															var newFriend = [[${invitation.emisor.id}]];
+															var invitation = [[${invitation.id}]];
+															$.post("/friendship/accept", 
+																	{						 
+																	"idNewFriend" : newFriend,
+																	"idInvitation" : invitation
+																	}, 
+																	function(){
+																		$("#invitation[[${invitation.emisor.id}]]").remove();
+																	});
+															
+														}); /*]]>*/
+									</script>
+							</div>
+							</div>
+						</td>
 
 					</tr>
 				</tbody>

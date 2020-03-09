@@ -82,4 +82,9 @@ public class InvitationFriendshipService {
 
 		return usersList;
 	}
+
+
+	public InvitationFriendship getInvitationById(Long idInvitation) {
+		return invitationFriendshipRepository.findById(idInvitation).get();
+	}
 }

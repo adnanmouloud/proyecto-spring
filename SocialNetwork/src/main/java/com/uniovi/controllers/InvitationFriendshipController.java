@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.uniovi.entities.InvitationFriendship;
 import com.uniovi.entities.User;
+import com.uniovi.services.FriendshipService;
 import com.uniovi.services.InvitationFriendshipService;
 import com.uniovi.services.UsersService;
 
@@ -26,6 +27,9 @@ public class InvitationFriendshipController {
 	
 	@Autowired
 	private InvitationFriendshipService invitationFriendshipService;
+	
+	@Autowired
+	private FriendshipService friendshipService;
 	
 	
 	@RequestMapping(value="/friendship/send", method = RequestMethod.POST)
@@ -61,5 +65,17 @@ public class InvitationFriendshipController {
 		Page<InvitationFriendship> ifs = invitationFriendshipService.getFriendRequests(pageable, user);
 		model.addAttribute("invitationsList", ifs.getContent());
 		return "mark/list :: tableMarks";
+	}
+	
+	@RequestMapping(value="/friendship/accept", method = RequestMethod.POST)
+	public String acceptRequest(@RequestParam Long idNewFriend, @RequestParam Long idInvitation, Model model, Principal principal )
+	{
+		invitationFriendshipService.getInvitationById(idInvitation).setAceptada(true);;
+		
+		User friend1 = usersService.getUserByEmail( principal.getName() );
+		
+		friendshipService.createFriendship(friend1, idNewFriend);
+		
+		return "redirect:/friendship/list";
 	}
 }

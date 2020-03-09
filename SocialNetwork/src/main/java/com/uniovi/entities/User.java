@@ -33,6 +33,12 @@ public class User {
 	@OneToMany(mappedBy ="receptor", cascade =  CascadeType.ALL, fetch = FetchType.EAGER)
 	private Set<InvitationFriendship> listaSolicitudesRecibidas;
 	
+	@OneToMany(mappedBy ="friend1", cascade =  CascadeType.ALL, fetch = FetchType.EAGER)
+	private Set<Friendship> friendsList1;
+	
+	@OneToMany(mappedBy ="friend2", cascade =  CascadeType.ALL, fetch = FetchType.EAGER)
+	private Set<Friendship> friendsList2;
+	
 	public User(String email, String name, String lastName) {
 		super();
 		this.email = email;
