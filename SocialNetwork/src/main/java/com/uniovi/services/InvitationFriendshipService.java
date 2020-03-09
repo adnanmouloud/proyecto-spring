@@ -79,8 +79,6 @@ public class InvitationFriendshipService {
 
 		for (InvitationFriendship i : invitationFriendshipRepository.findAllSentByUser(currentUser))
 			usersList.add(i.getReceptor());
-		
-		System.out.println(currentUser.getListaSolicitudesEnviadas());
 
 		return usersList;
 	}

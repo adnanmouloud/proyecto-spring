@@ -112,6 +112,7 @@ public class User {
 		return listaSolicitudesRecibidas;
 	}
 	
-	
-
+	public String toString() {
+		return getFullName();
+	}
 }

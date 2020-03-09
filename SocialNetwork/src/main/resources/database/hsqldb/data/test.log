@@ -1,0 +1,840 @@
+/*C3*/SET SCHEMA PUBLIC
+drop table if exists invitation_friendship CASCADE 
+drop table if exists user CASCADE 
+drop sequence hibernate_sequence if exists
+create sequence hibernate_sequence start with 1 increment by 1
+create table invitation_friendship (id bigint not null, aceptada boolean not null, emisor_id bigint, receptor_id bigint, primary key (id))
+create table user (id bigint not null, email varchar(255), last_name varchar(255), name varchar(255), password varchar(255), role varchar(255), primary key (id))
+alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
+alter table invitation_friendship add constraint FK1qa14mat110dtg1udlnbsy5r5 foreign key (emisor_id) references user
+alter table invitation_friendship add constraint FKnnl3wtxag4e16edc5xb96u76x foreign key (receptor_id) references user
+INSERT INTO USER VALUES(1,'adnan@gmail.es','Cyberpapi','Adnan','$2a$10$RRCPz1BCAmKb5yPLX3quQ.pdUjFAenPq2iuvR/UXzZsN3SiFwsQOy','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
+COMMIT
+INSERT INTO USER VALUES(2,'victorgon@gmail.es','Gonzalo','V\u00edctor','$2a$10$RqVhNp9I6PCA9LxYysF5juw2AySACoyumgBJlr/wEiBF8xTilM3.W','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
+COMMIT
+INSERT INTO USER VALUES(3,'maria@outlook.es','Rodr\u00edguez','Mar\u00eda','$2a$10$v/pkKVMNiRPCaDACRjNpl.jb4Q2ty0hZvWXtsN8iJDHrVT1Frseay','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 4
+COMMIT
+INSERT INTO USER VALUES(4,'fatema@outlook.es','aiQueTobillos','Fatema','$2a$10$bMJyqLCSC/BQvDyr9wtEM..W5h.CTQ8qkO3CUdJoKIaoYakhF09e.','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 5
+COMMIT
+INSERT INTO USER VALUES(5,'elmoha@gmail.es','seco','Moha','$2a$10$F4zNFCi9UiP9XPSwTsJfeuMEklRj6P9YIrI9.8QXFxQ98/4Nu5da2','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 6
+COMMIT
+INSERT INTO USER VALUES(6,'kiko@outlook.es','Saenz','Kiko','$2a$10$4JHQrq6U97G31e97tXVytuqibyge9fns1eodUBqggvWsgOsK7vHfS','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 7
+COMMIT
+INSERT INTO USER VALUES(7,'kanute@outlook.es','Ribas','Kanute','$2a$10$zQE1PlDDXhWXRZmcbjq0juIANLtFBEYfKJY4lHNNfNPPfnhMV3s.G','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 8
+COMMIT
+INSERT INTO USER VALUES(8,'dora@outlook.es','La exploradora','Dora','$2a$10$OEr8CKOBA8sQOUaoqcs9NOgYchIH6C141NEogMSbH/hb80L99QYOi','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 9
+COMMIT
+INSERT INTO USER VALUES(9,'admin@email.com','admin','admin','$2a$10$Z8aL0lCL1fpWbt0SmWJ3W.lI5zI7xD90VrCHtK5Rc7vPNEwPNykGK','ROLE_ADMIN')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 10
+COMMIT
+INSERT INTO INVITATION_FRIENDSHIP VALUES(10,FALSE,2,5)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 11
+COMMIT
+INSERT INTO INVITATION_FRIENDSHIP VALUES(11,FALSE,2,7)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 12
+COMMIT
+INSERT INTO INVITATION_FRIENDSHIP VALUES(12,FALSE,2,6)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 13
+COMMIT
+DISCONNECT
+/*C4*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C5*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C6*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C7*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C8*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C9*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C10*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C11*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C12*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C13*/SET SCHEMA PUBLIC
+drop table if exists invitation_friendship CASCADE 
+drop table if exists user CASCADE 
+drop sequence hibernate_sequence if exists
+create sequence hibernate_sequence start with 1 increment by 1
+create table invitation_friendship (id bigint not null, aceptada boolean not null, emisor_id bigint, receptor_id bigint, primary key (id))
+create table user (id bigint not null, email varchar(255), last_name varchar(255), name varchar(255), password varchar(255), role varchar(255), primary key (id))
+alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
+alter table invitation_friendship add constraint FK1qa14mat110dtg1udlnbsy5r5 foreign key (emisor_id) references user
+alter table invitation_friendship add constraint FKnnl3wtxag4e16edc5xb96u76x foreign key (receptor_id) references user
+INSERT INTO USER VALUES(1,'adnan@gmail.es','Cyberpapi','Adnan','$2a$10$U1bYNO6K4QIaJ2LWH41Qkuwk2y0Koj9bnlCC55eO7W0MbKqsBeRKC','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
+COMMIT
+INSERT INTO USER VALUES(2,'victorgon@gmail.es','Gonzalo','V\u00edctor','$2a$10$e9UpNkKG0D9bWx8oxaMWQuyJ9iv6xs0r2CQIJLeT9JeJVPAKcyp86','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
+COMMIT
+INSERT INTO USER VALUES(3,'maria@outlook.es','Rodr\u00edguez','Mar\u00eda','$2a$10$zbhxIlMvoA.zg.KEOIGNVOhxslTr9LLBXFlkxxzMZd9QD1eJxCeEa','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 4
+COMMIT
+INSERT INTO USER VALUES(4,'fatema@outlook.es','aiQueTobillos','Fatema','$2a$10$HqQ9C6mFhTyS5.wm/j85mOOhBMqySMcJWqRunUh6lBsZrdOW0nD.q','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 5
+COMMIT
+INSERT INTO USER VALUES(5,'elmoha@gmail.es','seco','Moha','$2a$10$JP.IAGk3CPuiu.25MTdKH.KmE7piA2TktTtBQdtimpW09bwrVcbOa','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 6
+COMMIT
+INSERT INTO USER VALUES(6,'kiko@outlook.es','Saenz','Kiko','$2a$10$PWlRf6TNw4/7VxZpc1XGBOVjakidn2wEc3cJWii5kGtdMz0BZ6RYW','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 7
+COMMIT
+INSERT INTO USER VALUES(7,'kanute@outlook.es','Ribas','Kanute','$2a$10$GjmS2LRduqlxDtbXJPEOquowLHC.BLdw9lFiRn6oFZQHcsJVwZkj.','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 8
+COMMIT
+INSERT INTO USER VALUES(8,'dora@outlook.es','La exploradora','Dora','$2a$10$21MDrpwIXJX81A8dVHQ/SueiUixE19TNCjQoLgP5K6QWOzs7PfETu','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 9
+COMMIT
+INSERT INTO USER VALUES(9,'admin@email.com','admin','admin','$2a$10$NT0dr.LeQbEdMdZju1fS2uQZDIxysm7pVbxb3tfc/v/lwFjsXKixu','ROLE_ADMIN')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 10
+COMMIT
+INSERT INTO INVITATION_FRIENDSHIP VALUES(10,FALSE,2,6)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 11
+COMMIT
+DISCONNECT
+/*C14*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C15*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C16*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C17*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C18*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C19*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C20*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C21*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C22*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C23*/SET SCHEMA PUBLIC
+drop table if exists invitation_friendship CASCADE 
+drop table if exists user CASCADE 
+drop sequence hibernate_sequence if exists
+create sequence hibernate_sequence start with 1 increment by 1
+create table invitation_friendship (id bigint not null, aceptada boolean not null, emisor_id bigint, receptor_id bigint, primary key (id))
+create table user (id bigint not null, email varchar(255), last_name varchar(255), name varchar(255), password varchar(255), role varchar(255), primary key (id))
+alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
+alter table invitation_friendship add constraint FK1qa14mat110dtg1udlnbsy5r5 foreign key (emisor_id) references user
+alter table invitation_friendship add constraint FKnnl3wtxag4e16edc5xb96u76x foreign key (receptor_id) references user
+INSERT INTO USER VALUES(1,'adnan@gmail.es','Cyberpapi','Adnan','$2a$10$Igbv9Lkg878m612sa476w.SHRWCsw7nbiJEKM7ePOHe8PjrNpTNy6','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
+COMMIT
+INSERT INTO USER VALUES(2,'victorgon@gmail.es','Gonzalo','V\u00edctor','$2a$10$poBtE50T685WDF/QdtO9ceSkuPoEp8908fC9kjLrCeOwAkX27ve/S','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
+COMMIT
+INSERT INTO USER VALUES(3,'maria@outlook.es','Rodr\u00edguez','Mar\u00eda','$2a$10$70xWUhMviNQ7O9oNZ4EmFOI4ljR4wv1LY0Y8Iu0RafTETs4OUQK0q','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 4
+COMMIT
+INSERT INTO USER VALUES(4,'fatema@outlook.es','aiQueTobillos','Fatema','$2a$10$GZcCJ0Yw00qOWDWkwFz/VuhWWt2/royuGrdk4w46OPEG5QZKXVVMC','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 5
+COMMIT
+INSERT INTO USER VALUES(5,'elmoha@gmail.es','seco','Moha','$2a$10$uX6.Vyvq.oqpPZBO.kyJWO4Fw.9f/0/3XwvBWn7mU7a.Cx5.sUNOC','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 6
+COMMIT
+INSERT INTO USER VALUES(6,'kiko@outlook.es','Saenz','Kiko','$2a$10$MiLouDjGOkxcVxzb.Vhqr.KBAGoOcJ2SPy3WNZjp8O9cPvQzrNvqm','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 7
+COMMIT
+INSERT INTO USER VALUES(7,'kanute@outlook.es','Ribas','Kanute','$2a$10$koCicpvjbA5VAWttQqALwe9HvcZfrEWYHUf1CLSWrGl56bCHxORbC','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 8
+COMMIT
+INSERT INTO USER VALUES(8,'dora@outlook.es','La exploradora','Dora','$2a$10$hOnJCgG3QX6RiqysB4w3tejYaQqudVyhT5fMT7bpUQDZL/PntXPQC','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 9
+COMMIT
+INSERT INTO USER VALUES(9,'admin@email.com','admin','admin','$2a$10$bRvZ5aEBEeO4Bx.l9ctjfumFjezj1FJY.Nl8B44zADtUT/BSfpcde','ROLE_ADMIN')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 10
+COMMIT
+INSERT INTO INVITATION_FRIENDSHIP VALUES(10,FALSE,2,1)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 11
+COMMIT
+DISCONNECT
+/*C24*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C25*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C26*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C27*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C28*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C29*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C30*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C31*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C32*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C33*/SET SCHEMA PUBLIC
+drop table if exists invitation_friendship CASCADE 
+drop table if exists user CASCADE 
+drop sequence hibernate_sequence if exists
+create sequence hibernate_sequence start with 1 increment by 1
+create table invitation_friendship (id bigint not null, aceptada boolean not null, emisor_id bigint, receptor_id bigint, primary key (id))
+create table user (id bigint not null, email varchar(255), last_name varchar(255), name varchar(255), password varchar(255), role varchar(255), primary key (id))
+alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
+alter table invitation_friendship add constraint FK1qa14mat110dtg1udlnbsy5r5 foreign key (emisor_id) references user
+alter table invitation_friendship add constraint FKnnl3wtxag4e16edc5xb96u76x foreign key (receptor_id) references user
+INSERT INTO USER VALUES(1,'adnan@gmail.es','Cyberpapi','Adnan','$2a$10$vvEO6iyxRA8uw1X4rI1RvOQ.s3/xK2ZLyoefWc/zMi274/X4vOOou','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
+COMMIT
+INSERT INTO USER VALUES(2,'victorgon@gmail.es','Gonzalo','V\u00edctor','$2a$10$vnbQkFsmKZ.wseeOv1DcY.hyocBCovvJiVqHhnT4FkwvgI5XApony','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
+COMMIT
+INSERT INTO USER VALUES(3,'maria@outlook.es','Rodr\u00edguez','Mar\u00eda','$2a$10$uqbuhNuSXCiHMjtUvY5Zz.W7reQuyLy8o2SmcPmDtB/r2WD3R52eq','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 4
+COMMIT
+INSERT INTO USER VALUES(4,'fatema@outlook.es','aiQueTobillos','Fatema','$2a$10$jJIiuBZD50KWP5s0lerk4.s9FUIFGrikmbVrHnmITHsHhtJoLjCKq','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 5
+COMMIT
+INSERT INTO USER VALUES(5,'elmoha@gmail.es','seco','Moha','$2a$10$8djRTTENFOc8Xm2vjU59lefI3MbDtg/1XKCoD3jLBM4TjAW5JU2lq','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 6
+COMMIT
+INSERT INTO USER VALUES(6,'kiko@outlook.es','Saenz','Kiko','$2a$10$rBwdCc0gZ0pY4OIOwGoUj.WRvZFOvI0ToNicNeIbAL2HG4Ylu2d4a','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 7
+COMMIT
+INSERT INTO USER VALUES(7,'kanute@outlook.es','Ribas','Kanute','$2a$10$vqHD/Xscu1mU4vpui/A1reqE/8vdL8MGnY057Hu3Wt/IOEMlIeUSK','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 8
+COMMIT
+INSERT INTO USER VALUES(8,'dora@outlook.es','La exploradora','Dora','$2a$10$iW5aWI7uopTqHD37j/OUxOJg/eB7fbbkVb8W.85xFLasAWXzQtQca','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 9
+COMMIT
+INSERT INTO USER VALUES(9,'admin@email.com','admin','admin','$2a$10$0FAbIcOb.32BCfd5ktvpAOBRpKW9TwF2YnTlZ729E2TXqZTcv3Ndy','ROLE_ADMIN')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 10
+COMMIT
+INSERT INTO INVITATION_FRIENDSHIP VALUES(10,FALSE,2,1)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 11
+COMMIT
+INSERT INTO INVITATION_FRIENDSHIP VALUES(11,FALSE,2,6)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 12
+COMMIT
+INSERT INTO INVITATION_FRIENDSHIP VALUES(12,FALSE,2,6)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 13
+COMMIT
+INSERT INTO INVITATION_FRIENDSHIP VALUES(13,FALSE,2,3)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 14
+COMMIT
+DISCONNECT
+/*C34*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C35*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C36*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C37*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C38*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C39*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C40*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C41*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C42*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C43*/SET SCHEMA PUBLIC
+drop table if exists invitation_friendship CASCADE 
+drop table if exists user CASCADE 
+drop sequence hibernate_sequence if exists
+create sequence hibernate_sequence start with 1 increment by 1
+create table invitation_friendship (id bigint not null, aceptada boolean not null, emisor_id bigint, receptor_id bigint, primary key (id))
+create table user (id bigint not null, email varchar(255), last_name varchar(255), name varchar(255), password varchar(255), role varchar(255), primary key (id))
+alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
+alter table invitation_friendship add constraint FK1qa14mat110dtg1udlnbsy5r5 foreign key (emisor_id) references user
+alter table invitation_friendship add constraint FKnnl3wtxag4e16edc5xb96u76x foreign key (receptor_id) references user
+INSERT INTO USER VALUES(1,'adnan@gmail.es','Cyberpapi','Adnan','$2a$10$OIu5CxGsoQXsDxSSK5n8kODq7bYTtIKY7AxjQrGvm.CQe4Db9AcHS','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
+COMMIT
+INSERT INTO USER VALUES(2,'victorgon@gmail.es','Gonzalo','V\u00edctor','$2a$10$NLpS/.LmidA5SIN8wNKJouN7aR0mZPaeqjjjdoShzkhgbwL3V63Sy','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
+COMMIT
+INSERT INTO USER VALUES(3,'maria@outlook.es','Rodr\u00edguez','Mar\u00eda','$2a$10$zFgjLXfb3TWIasF1ZuS.DOkXqTu01iY4hyEy8o6lrOnYNpcMKox6C','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 4
+COMMIT
+INSERT INTO USER VALUES(4,'fatema@outlook.es','aiQueTobillos','Fatema','$2a$10$3hUdJa09QFsk2W8Lb4.Axu4o.YNQt/4a8IMdllJtI4nn6IJcCG55m','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 5
+COMMIT
+INSERT INTO USER VALUES(5,'elmoha@gmail.es','seco','Moha','$2a$10$.vXjdriuEK1o4mAgDg8cvOchhKoyqwajEwFkfUzkJDbA73ls4kcvi','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 6
+COMMIT
+INSERT INTO USER VALUES(6,'kiko@outlook.es','Saenz','Kiko','$2a$10$dHFKg5W3vdPxUByZLUaWsu3PuolCjcoVoi8YimtI2D4Slz3LdSg6i','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 7
+COMMIT
+INSERT INTO USER VALUES(7,'kanute@outlook.es','Ribas','Kanute','$2a$10$9MnqkKHut/kTT2x2ZjWaleu1yUtlS.uwgRr3isnylGJaaUD2Eeo.C','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 8
+COMMIT
+INSERT INTO USER VALUES(8,'dora@outlook.es','La exploradora','Dora','$2a$10$XigcrtI2CFwehdrp9TxF.OilOAueyjKMYV96Fa7GxiTgU.iMOVl.G','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 9
+COMMIT
+INSERT INTO USER VALUES(9,'admin@email.com','admin','admin','$2a$10$BwQ2h56zjuDpr7k0RnnL8.RpQYsa12kLBn7kRfkmlEJDpvdH3ezc.','ROLE_ADMIN')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 10
+COMMIT
+INSERT INTO INVITATION_FRIENDSHIP VALUES(10,FALSE,2,4)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 11
+COMMIT
+INSERT INTO INVITATION_FRIENDSHIP VALUES(11,FALSE,2,3)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 12
+COMMIT
+DISCONNECT
+/*C44*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C45*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C46*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C47*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C48*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C49*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C50*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C51*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C52*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C53*/SET SCHEMA PUBLIC
+drop table if exists invitation_friendship CASCADE 
+drop table if exists user CASCADE 
+drop sequence hibernate_sequence if exists
+create sequence hibernate_sequence start with 1 increment by 1
+create table invitation_friendship (id bigint not null, aceptada boolean not null, emisor_id bigint, receptor_id bigint, primary key (id))
+create table user (id bigint not null, email varchar(255), last_name varchar(255), name varchar(255), password varchar(255), role varchar(255), primary key (id))
+alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
+alter table invitation_friendship add constraint FK1qa14mat110dtg1udlnbsy5r5 foreign key (emisor_id) references user
+alter table invitation_friendship add constraint FKnnl3wtxag4e16edc5xb96u76x foreign key (receptor_id) references user
+INSERT INTO USER VALUES(1,'adnan@gmail.es','Cyberpapi','Adnan','$2a$10$G1e4jP8uv0FKiTSwX.e9K.F16gmR3Aiuw73Y3oxBZJn6XUrhJdkhi','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
+COMMIT
+INSERT INTO USER VALUES(2,'victorgon@gmail.es','Gonzalo','V\u00edctor','$2a$10$8WBsDZQC9Qq0M5.U1FGvQOSqLaLBKrGi7QZQ6CNHdICLtZTHGkT9i','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
+COMMIT
+INSERT INTO USER VALUES(3,'maria@outlook.es','Rodr\u00edguez','Mar\u00eda','$2a$10$vLdDN8.8mab.tpoIC2axqO9Pj2RO7xtKrYL45Wfo/nfbqgEK1I6C2','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 4
+COMMIT
+INSERT INTO USER VALUES(4,'fatema@outlook.es','aiQueTobillos','Fatema','$2a$10$CKH8FTX8Os753tj2uyiC0uo6LYt1fv7WsEihvX9T9LkBVNESdYfoC','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 5
+COMMIT
+INSERT INTO USER VALUES(5,'elmoha@gmail.es','seco','Moha','$2a$10$eFEY9cJUWunWwfS6kL54ge.xZQlgUL4SPyG3NE39f4P.SofNYAMDO','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 6
+COMMIT
+INSERT INTO USER VALUES(6,'kiko@outlook.es','Saenz','Kiko','$2a$10$STi6nxCfUk6EUs804j69N.KHE0hXux4GY75rc3PPW6FuXE81LYDkS','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 7
+COMMIT
+INSERT INTO USER VALUES(7,'kanute@outlook.es','Ribas','Kanute','$2a$10$UCjg2rQQYxzLmsH2.ZSsYujA8iEo1PfpPC94q5k.mhQU2p0mYNu7.','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 8
+COMMIT
+INSERT INTO USER VALUES(8,'dora@outlook.es','La exploradora','Dora','$2a$10$vnhl2R5mhHy5k7sz8.wJ/O4xJ2GTW1TUznbtc.8UqvLOmvtaNyKMO','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 9
+COMMIT
+INSERT INTO USER VALUES(9,'admin@email.com','admin','admin','$2a$10$HI3Jxyl.1b2v80MSw2zczeNvL9Jx.6uWyxl4lD.ZQ.fiVZ.xAsagO','ROLE_ADMIN')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 10
+COMMIT
+INSERT INTO INVITATION_FRIENDSHIP VALUES(10,FALSE,2,4)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 11
+COMMIT
+INSERT INTO INVITATION_FRIENDSHIP VALUES(11,FALSE,2,6)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 12
+COMMIT
+INSERT INTO INVITATION_FRIENDSHIP VALUES(12,FALSE,2,8)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 13
+COMMIT
+DISCONNECT
+/*C54*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C55*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C56*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C57*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C58*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C59*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C60*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C61*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C62*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C63*/SET SCHEMA PUBLIC
+drop table if exists invitation_friendship CASCADE 
+drop table if exists user CASCADE 
+drop sequence hibernate_sequence if exists
+create sequence hibernate_sequence start with 1 increment by 1
+create table invitation_friendship (id bigint not null, aceptada boolean not null, emisor_id bigint, receptor_id bigint, primary key (id))
+create table user (id bigint not null, email varchar(255), last_name varchar(255), name varchar(255), password varchar(255), role varchar(255), primary key (id))
+alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
+alter table invitation_friendship add constraint FK1qa14mat110dtg1udlnbsy5r5 foreign key (emisor_id) references user
+alter table invitation_friendship add constraint FKnnl3wtxag4e16edc5xb96u76x foreign key (receptor_id) references user
+INSERT INTO USER VALUES(1,'adnan@gmail.es','Cyberpapi','Adnan','$2a$10$vBvZpaJT9y7.EpkdolwU/.3ZB02zYlkyN/T9NSfZBNyelo0/bH3Se','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
+COMMIT
+INSERT INTO USER VALUES(2,'victorgon@gmail.es','Gonzalo','V\u00edctor','$2a$10$P1Ep.6.v6vNP0wJBHmLLGeYyikjefYxYN7kFfXCHmB0CP.IaTIrza','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
+COMMIT
+INSERT INTO USER VALUES(3,'maria@outlook.es','Rodr\u00edguez','Mar\u00eda','$2a$10$Zw5hxryfzoguLMXXQWcIX.3D9.vIm/AFsZ5sdBeeWkrzWOMRnfXzG','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 4
+COMMIT
+INSERT INTO USER VALUES(4,'fatema@outlook.es','aiQueTobillos','Fatema','$2a$10$/o2LC1SHxrjruqOjYgyk9.uMFAewJ8VbTYB6NUzcynaiKkOK0EWF2','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 5
+COMMIT
+INSERT INTO USER VALUES(5,'elmoha@gmail.es','seco','Moha','$2a$10$jr0zIyX/kwCplL1zogX4NOrsJgkbjvnAF//Hk/P4XPLwn2GuMDZhu','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 6
+COMMIT
+INSERT INTO USER VALUES(6,'kiko@outlook.es','Saenz','Kiko','$2a$10$Mt/J.RZqFFTDarQI7fp6yOZd6KlUp1q9GsCWIqxk98FcBc1u5A2u2','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 7
+COMMIT
+INSERT INTO USER VALUES(7,'kanute@outlook.es','Ribas','Kanute','$2a$10$G3f7b20zpUBY5fN8kzA.UOjsOp/jM8pxl8gSLHocC0M2E3DEDLfRC','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 8
+COMMIT
+INSERT INTO USER VALUES(8,'dora@outlook.es','La exploradora','Dora','$2a$10$V4nCNS3n/ab9SPcsVklFR.VAd3mfqDML98n3Lzqp6UODKtmXpnVJi','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 9
+COMMIT
+INSERT INTO USER VALUES(9,'admin@email.com','admin','admin','$2a$10$gF8toXJt6p7Iq08jnhFoXOhY65iHut.zbls1UYQOn7P8dll4Hcun6','ROLE_ADMIN')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 10
+COMMIT
+INSERT INTO INVITATION_FRIENDSHIP VALUES(10,FALSE,2,1)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 11
+COMMIT
+INSERT INTO INVITATION_FRIENDSHIP VALUES(11,FALSE,2,4)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 12
+COMMIT
+INSERT INTO INVITATION_FRIENDSHIP VALUES(12,FALSE,2,8)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 13
+COMMIT
+DISCONNECT
+/*C64*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C65*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C66*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C67*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C68*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C69*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C70*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C71*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C72*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C73*/SET SCHEMA PUBLIC
+drop table if exists invitation_friendship CASCADE 
+drop table if exists user CASCADE 
+drop sequence hibernate_sequence if exists
+create sequence hibernate_sequence start with 1 increment by 1
+create table invitation_friendship (id bigint not null, aceptada boolean not null, emisor_id bigint, receptor_id bigint, primary key (id))
+create table user (id bigint not null, email varchar(255), last_name varchar(255), name varchar(255), password varchar(255), role varchar(255), primary key (id))
+alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
+alter table invitation_friendship add constraint FK1qa14mat110dtg1udlnbsy5r5 foreign key (emisor_id) references user
+alter table invitation_friendship add constraint FKnnl3wtxag4e16edc5xb96u76x foreign key (receptor_id) references user
+INSERT INTO USER VALUES(1,'adnan@gmail.es','Cyberpapi','Adnan','$2a$10$rLHOLH0WJBtbK6XyHvKo.eR5PBZ3ex3HrzFtx/6FC3gQxk1p9lj0C','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
+COMMIT
+INSERT INTO USER VALUES(2,'victorgon@gmail.es','Gonzalo','V\u00edctor','$2a$10$tUY27DXMnkv1zDXoA4LCUeV16eJS/IjLdi8XpFmtiduo66jDHgLzq','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
+COMMIT
+INSERT INTO USER VALUES(3,'maria@outlook.es','Rodr\u00edguez','Mar\u00eda','$2a$10$al20go7ElQgc3rU6MOnWe.HoDIx0uz1U4h3PqHWQuJEhgKvfgLRmq','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 4
+COMMIT
+INSERT INTO USER VALUES(4,'fatema@outlook.es','aiQueTobillos','Fatema','$2a$10$SJ/8IugdXuvP/w/XGzkl/.35qnb9RAFY3WSnSaV3A2EdNCsJB7GVe','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 5
+COMMIT
+INSERT INTO USER VALUES(5,'elmoha@gmail.es','seco','Moha','$2a$10$J2MLMtkiHE8YE.h68Zhmi.v1C4Jtp3cqGAnNycxixBa3fahnFd/5q','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 6
+COMMIT
+INSERT INTO USER VALUES(6,'kiko@outlook.es','Saenz','Kiko','$2a$10$ZGOAtXx9UbL891TTmNzLFuqFq.XxqjUf8VBPhylCO1XmPWlRL/fs.','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 7
+COMMIT
+INSERT INTO USER VALUES(7,'kanute@outlook.es','Ribas','Kanute','$2a$10$OR/isdC5FfBcbQWCYwHI5uwInJgz3w2OvU2ZO/X7janYkcDLbt.s.','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 8
+COMMIT
+INSERT INTO USER VALUES(8,'dora@outlook.es','La exploradora','Dora','$2a$10$JxStx3BxV2HVoZa54FAPhuLi2Yi7VdQX8o/mK8lFr.17L4l9qR6TC','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 9
+COMMIT
+INSERT INTO USER VALUES(9,'admin@email.com','admin','admin','$2a$10$CffzBOTSZiKrWLBlGiztHenF6.6hqRogm3rF7PDBAIY0uP3thllHS','ROLE_ADMIN')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 10
+COMMIT
+INSERT INTO INVITATION_FRIENDSHIP VALUES(10,FALSE,2,1)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 11
+COMMIT
+DISCONNECT
+/*C74*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C75*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C76*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C77*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C78*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C79*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C80*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C81*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C82*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C83*/SET SCHEMA PUBLIC
+drop table if exists invitation_friendship CASCADE 
+drop table if exists user CASCADE 
+drop sequence hibernate_sequence if exists
+create sequence hibernate_sequence start with 1 increment by 1
+create table invitation_friendship (id bigint not null, aceptada boolean not null, emisor_id bigint, receptor_id bigint, primary key (id))
+create table user (id bigint not null, email varchar(255), last_name varchar(255), name varchar(255), password varchar(255), role varchar(255), primary key (id))
+alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
+alter table invitation_friendship add constraint FK1qa14mat110dtg1udlnbsy5r5 foreign key (emisor_id) references user
+alter table invitation_friendship add constraint FKnnl3wtxag4e16edc5xb96u76x foreign key (receptor_id) references user
+INSERT INTO USER VALUES(1,'adnan@gmail.es','Cyberpapi','Adnan','$2a$10$EgZeDKYt4YS/yXckmSAoDu3/IPpPwc3hl5CyDtxVRggNa2siw9JKS','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
+COMMIT
+INSERT INTO USER VALUES(2,'victorgon@gmail.es','Gonzalo','V\u00edctor','$2a$10$Ge8UUND.9MujBSVXqZhyg.b3g3JTulXdX40iN6X99ikMi1H.yr/5G','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
+COMMIT
+INSERT INTO USER VALUES(3,'maria@outlook.es','Rodr\u00edguez','Mar\u00eda','$2a$10$e48eLI84N3kOhFG2GJJdmeisBVe5Nb/n2D.x7oX7jngxf6gddpE3m','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 4
+COMMIT
+INSERT INTO USER VALUES(4,'fatema@outlook.es','aiQueTobillos','Fatema','$2a$10$tvPvrLsI4J74qtoeatHXOuX5ODJHZqdYsTKtJ0fwtm8OoxqGb.G4i','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 5
+COMMIT
+INSERT INTO USER VALUES(5,'elmoha@gmail.es','seco','Moha','$2a$10$221ciB6jYmsrWkpkavPl3O5.MXHZ/PlqdVPqTuChfbv8GS2XRgf0e','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 6
+COMMIT
+INSERT INTO USER VALUES(6,'kiko@outlook.es','Saenz','Kiko','$2a$10$xnPJmLKJicUWzGWhR9KIcO4ABGYBoy9m3nLO0A4WtIZZBUQqRN/XC','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 7
+COMMIT
+INSERT INTO USER VALUES(7,'kanute@outlook.es','Ribas','Kanute','$2a$10$cXSTjCgUbqGA3Y4iolZo8e.eWa5OKwW15NA/0RDTWiMnJx5a.ROPm','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 8
+COMMIT
+INSERT INTO USER VALUES(8,'dora@outlook.es','La exploradora','Dora','$2a$10$sBdis/FQN1AjRxZp0eHQVO25nWQgZch8u6MGNkJUEyNq7W7XK5jMG','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 9
+COMMIT
+INSERT INTO USER VALUES(9,'admin@email.com','admin','admin','$2a$10$QIALXumgW666qQxCP29B3ennT3MEMKbsIft2iSimJkvAHXQ6TLFpu','ROLE_ADMIN')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 10
+COMMIT
+INSERT INTO INVITATION_FRIENDSHIP VALUES(10,FALSE,2,1)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 11
+COMMIT
+DISCONNECT
+/*C84*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C85*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C86*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C87*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C88*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C89*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C90*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C91*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C92*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C93*/SET SCHEMA PUBLIC
+drop table if exists invitation_friendship CASCADE 
+drop table if exists user CASCADE 
+drop sequence hibernate_sequence if exists
+create sequence hibernate_sequence start with 1 increment by 1
+create table invitation_friendship (id bigint not null, aceptada boolean not null, emisor_id bigint, receptor_id bigint, primary key (id))
+create table user (id bigint not null, email varchar(255), last_name varchar(255), name varchar(255), password varchar(255), role varchar(255), primary key (id))
+alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
+alter table invitation_friendship add constraint FK1qa14mat110dtg1udlnbsy5r5 foreign key (emisor_id) references user
+alter table invitation_friendship add constraint FKnnl3wtxag4e16edc5xb96u76x foreign key (receptor_id) references user
+INSERT INTO USER VALUES(1,'adnan@gmail.es','Cyberpapi','Adnan','$2a$10$fkd6iJdP5I/B7qk7EcI50ex2JKcNSJ28gJI3gbE7sZ.AA9R/ChlO2','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
+COMMIT
+INSERT INTO USER VALUES(2,'victorgon@gmail.es','Gonzalo','V\u00edctor','$2a$10$EgaNjkyIoLWw7EVEScUbMOpp7G7q94.LQLzx2UflbrnFIg94W.t7G','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
+COMMIT
+INSERT INTO USER VALUES(3,'maria@outlook.es','Rodr\u00edguez','Mar\u00eda','$2a$10$85lqQbsuaV.UZ5DLUq1/v.SZhxmvZj7WoB20pcAE/u2VOjSmSeBrC','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 4
+COMMIT
+INSERT INTO USER VALUES(4,'fatema@outlook.es','aiQueTobillos','Fatema','$2a$10$oT3v7vaVtWgA44RnAxp6d.rehi0OKLI5N9B0OLrk/NwP402F.Skb6','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 5
+COMMIT
+INSERT INTO USER VALUES(5,'elmoha@gmail.es','seco','Moha','$2a$10$5LlQjoMFVVjeWkYpHEnKIe3bzPkVN39HiwTWdLk5QzuFCE.zsdBo6','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 6
+COMMIT
+INSERT INTO USER VALUES(6,'kiko@outlook.es','Saenz','Kiko','$2a$10$FCQoDinNG0yMpEY74IIuC.ZbiODHus3F.1kHBo6RJw2/vd3cgO6Lm','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 7
+COMMIT
+INSERT INTO USER VALUES(7,'kanute@outlook.es','Ribas','Kanute','$2a$10$EtAXZiGBf1Q8806j3UnRkeaJTfJ4BZeX.9bmtEjVZ36CTO8as6tZu','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 8
+COMMIT
+INSERT INTO USER VALUES(8,'dora@outlook.es','La exploradora','Dora','$2a$10$/lED/fcjihZg9ND4oiO/heUUQFC9EoD.NAxjubpTd8VPiifsWY.aC','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 9
+COMMIT
+INSERT INTO USER VALUES(9,'admin@email.com','admin','admin','$2a$10$FUFFst7cN.YmKX18BOXzO.dNOtWvsGmHz01XPT2HMS0Bl5FR95WLe','ROLE_ADMIN')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 10
+COMMIT
+INSERT INTO INVITATION_FRIENDSHIP VALUES(10,FALSE,2,1)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 11
+COMMIT
+DISCONNECT
+/*C94*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C95*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C96*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C97*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C98*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C99*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C100*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C101*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C102*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C103*/SET SCHEMA PUBLIC
+drop table if exists invitation_friendship CASCADE 
+drop table if exists user CASCADE 
+drop sequence hibernate_sequence if exists
+create sequence hibernate_sequence start with 1 increment by 1
+create table invitation_friendship (id bigint not null, aceptada boolean not null, emisor_id bigint, receptor_id bigint, primary key (id))
+create table user (id bigint not null, email varchar(255), last_name varchar(255), name varchar(255), password varchar(255), role varchar(255), primary key (id))
+alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
+alter table invitation_friendship add constraint FK1qa14mat110dtg1udlnbsy5r5 foreign key (emisor_id) references user
+alter table invitation_friendship add constraint FKnnl3wtxag4e16edc5xb96u76x foreign key (receptor_id) references user
+INSERT INTO USER VALUES(1,'adnan@gmail.es','Cyberpapi','Adnan','$2a$10$7rKZ1YqCfmOXN9H5TvrXjeAOAF0E32w0c2n4MHzWc16ckavToytfO','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
+COMMIT
+INSERT INTO USER VALUES(2,'victorgon@gmail.es','Gonzalo','V\u00edctor','$2a$10$dJVLKj0/5aYgHx6RBfW1lOQTaZa8.7M8RyLHzGtTtYYJNSWA2RZMm','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
+COMMIT
+INSERT INTO USER VALUES(3,'maria@outlook.es','Rodr\u00edguez','Mar\u00eda','$2a$10$R4EDdNNa3MFMFi/HDNlp1eXlXThLFI7Ec7HJTcN1g/FCzIddJKEE6','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 4
+COMMIT
+INSERT INTO USER VALUES(4,'fatema@outlook.es','aiQueTobillos','Fatema','$2a$10$24jUwftHV84JFlXpwQ5OCu./HtNIZBUv7e7fMarVuYjnhZwJ1mhtK','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 5
+COMMIT
+INSERT INTO USER VALUES(5,'elmoha@gmail.es','seco','Moha','$2a$10$Ti.n6JMVqCpB3J2rSs9.POi5Dkt5AukQsnH4wD8fPing9p33fIrMK','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 6
+COMMIT
+INSERT INTO USER VALUES(6,'kiko@outlook.es','Saenz','Kiko','$2a$10$iixl5vYdeafaxcBbhYgeau.IShmX7Ew3Xv7P.JTsh3VgLY3NydusC','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 7
+COMMIT
+INSERT INTO USER VALUES(7,'kanute@outlook.es','Ribas','Kanute','$2a$10$/sqZw3Z76anfV8T.3c9W5OecqNOc9et.1oAa2XH.hVwL/RxIXyNVO','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 8
+COMMIT
+INSERT INTO USER VALUES(8,'dora@outlook.es','La exploradora','Dora','$2a$10$UaPRHpxyqk.HHsggjW2RTOATGNNjzWcflUjFJGRxr.Al.xjEQ0nxe','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 9
+COMMIT
+INSERT INTO USER VALUES(9,'admin@email.com','admin','admin','$2a$10$99jQeYNAFh1qGsOCOnE8weuSGH8UHVG4.xsalTyLUS1Hhza2KZ5Da','ROLE_ADMIN')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 10
+COMMIT
+INSERT INTO INVITATION_FRIENDSHIP VALUES(10,FALSE,2,1)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 11
+COMMIT
+DISCONNECT
+/*C104*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C105*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C106*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C107*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C108*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C109*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C110*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C111*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C112*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C113*/SET SCHEMA PUBLIC
+drop table if exists invitation_friendship CASCADE 
+drop table if exists user CASCADE 
+drop sequence hibernate_sequence if exists
+create sequence hibernate_sequence start with 1 increment by 1
+create table invitation_friendship (id bigint not null, aceptada boolean not null, emisor_id bigint, receptor_id bigint, primary key (id))
+create table user (id bigint not null, email varchar(255), last_name varchar(255), name varchar(255), password varchar(255), role varchar(255), primary key (id))
+alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
+alter table invitation_friendship add constraint FK1qa14mat110dtg1udlnbsy5r5 foreign key (emisor_id) references user
+alter table invitation_friendship add constraint FKnnl3wtxag4e16edc5xb96u76x foreign key (receptor_id) references user
+INSERT INTO USER VALUES(1,'adnan@gmail.es','Cyberpapi','Adnan','$2a$10$tNN07WrrHZIhd1do9z0cJORA6PdM1RfZ4ZTQSTWQ4YqqNyu/PkY4S','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
+COMMIT
+INSERT INTO USER VALUES(2,'victorgon@gmail.es','Gonzalo','V\u00edctor','$2a$10$5wTnnJJ3/ULm51V29J1FCeUogTFcRfJhFyQareKdhJh4GS7UCfC9u','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
+COMMIT
+INSERT INTO USER VALUES(3,'maria@outlook.es','Rodr\u00edguez','Mar\u00eda','$2a$10$sQJWlDhyngewT1V152kmVu1lo3FdyPRdunYeOAQ2UdQTzW3n4ISLi','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 4
+COMMIT
+INSERT INTO USER VALUES(4,'fatema@outlook.es','aiQueTobillos','Fatema','$2a$10$kUluCpXaZWZMukvlmxW7tOCrax6r1/31AD2LufpfpB9MjcfFJdrBS','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 5
+COMMIT
+INSERT INTO USER VALUES(5,'elmoha@gmail.es','seco','Moha','$2a$10$xQjPZq1qpEBdjDnin75BzONkD4FOKuinTvHktGfjlLJO6R4IOGR1e','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 6
+COMMIT
+INSERT INTO USER VALUES(6,'kiko@outlook.es','Saenz','Kiko','$2a$10$SCe.tDRzBwf3zH1GMulTy.3nUgIA46iBvmNS6oUivXMCQpP5xt2su','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 7
+COMMIT
+INSERT INTO USER VALUES(7,'kanute@outlook.es','Ribas','Kanute','$2a$10$QFXaVBttPIJ6/4Nvc9Hp9OiAzy5m9bGA8x.9jVuuTxpYw6kLrO.a.','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 8
+COMMIT
+INSERT INTO USER VALUES(8,'dora@outlook.es','La exploradora','Dora','$2a$10$wB2H887PLzaC.CyN5Har..Dd.aTWDpBFyhpZlld6EY2GlO1ygIE/u','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 9
+COMMIT
+INSERT INTO USER VALUES(9,'admin@email.com','admin','admin','$2a$10$r43AL56LV7ThZeQRDTyI8O2LvfCq4g66.TI63baB4XcLPhSu7BZD6','ROLE_ADMIN')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 10
+COMMIT
+INSERT INTO INVITATION_FRIENDSHIP VALUES(10,FALSE,2,1)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 11
+COMMIT
+DISCONNECT
+/*C114*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C115*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C116*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C117*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C118*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C119*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C120*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C121*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C122*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C123*/SET SCHEMA PUBLIC
+drop table if exists invitation_friendship CASCADE 
+drop table if exists user CASCADE 
+drop sequence hibernate_sequence if exists
+create sequence hibernate_sequence start with 1 increment by 1
+create table invitation_friendship (id bigint not null, aceptada boolean not null, emisor_id bigint, receptor_id bigint, primary key (id))
+create table user (id bigint not null, email varchar(255), last_name varchar(255), name varchar(255), password varchar(255), role varchar(255), primary key (id))
+alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
+alter table invitation_friendship add constraint FK1qa14mat110dtg1udlnbsy5r5 foreign key (emisor_id) references user
+alter table invitation_friendship add constraint FKnnl3wtxag4e16edc5xb96u76x foreign key (receptor_id) references user
+INSERT INTO USER VALUES(1,'adnan@gmail.es','Cyberpapi','Adnan','$2a$10$rm8O5NayJ7g5L9.lAEmmQeoJcq3b7VC4/ul8MZoU8.W3cV5MWP1dG','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
+COMMIT
+INSERT INTO USER VALUES(2,'victorgon@gmail.es','Gonzalo','V\u00edctor','$2a$10$UH7vor2lMdINIiC7xi8Ut.PmhnpSVZRkkMrbEYsCg1EnB524zhX92','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
+COMMIT
+INSERT INTO USER VALUES(3,'maria@outlook.es','Rodr\u00edguez','Mar\u00eda','$2a$10$E8AQI3JkuLTAno7sXRmYyeTdIX3cBswwcMB/a5FNCNp.73vHYMO6m','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 4
+COMMIT
+INSERT INTO USER VALUES(4,'fatema@outlook.es','aiQueTobillos','Fatema','$2a$10$ki6D6TjjQ2LR14XMseC7UOjkrnvIVoya3pWmlPN1fkDuPWVdl2FSa','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 5
+COMMIT
+INSERT INTO USER VALUES(5,'elmoha@gmail.es','seco','Moha','$2a$10$XAtk5K1JoTbyE0BVBlxPSegzXvs5V8Drnk8dIdV7W0JIAa8FQgnP.','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 6
+COMMIT
+INSERT INTO USER VALUES(6,'kiko@outlook.es','Saenz','Kiko','$2a$10$nOunrRrWkL3UpF8RzKRq5unUqjF8oMa3MzPWXdkEVtDfVJUID.v8u','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 7
+COMMIT
+INSERT INTO USER VALUES(7,'kanute@outlook.es','Ribas','Kanute','$2a$10$NES3gc8esgEzk1J3v5DZgeyOz1VE/Z/vg6Ra5oIv0vvko5zwYACfS','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 8
+COMMIT
+INSERT INTO USER VALUES(8,'dora@outlook.es','La exploradora','Dora','$2a$10$KW1FdhqYBHH4A5xyeJjb7OHdW6rdODd9HEUhNSTC6ry4mKLPTQJNO','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 9
+COMMIT
+INSERT INTO USER VALUES(9,'admin@email.com','admin','admin','$2a$10$2KiiqHeKCilVBnNQvlap4.2Sn0kYO2umM4/p1GrX.xPgbjvBh4Lia','ROLE_ADMIN')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 10
+COMMIT
+INSERT INTO INVITATION_FRIENDSHIP VALUES(10,FALSE,2,1)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 11
+COMMIT
+DISCONNECT
+/*C124*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C125*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C126*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C127*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C128*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C129*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C130*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C131*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C132*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C133*/SET SCHEMA PUBLIC
+drop table if exists invitation_friendship CASCADE 
+drop table if exists user CASCADE 
+drop sequence hibernate_sequence if exists
+create sequence hibernate_sequence start with 1 increment by 1
+create table invitation_friendship (id bigint not null, aceptada boolean not null, emisor_id bigint, receptor_id bigint, primary key (id))
+create table user (id bigint not null, email varchar(255), last_name varchar(255), name varchar(255), password varchar(255), role varchar(255), primary key (id))
+alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
+alter table invitation_friendship add constraint FK1qa14mat110dtg1udlnbsy5r5 foreign key (emisor_id) references user
+alter table invitation_friendship add constraint FKnnl3wtxag4e16edc5xb96u76x foreign key (receptor_id) references user
+INSERT INTO USER VALUES(1,'adnan@gmail.es','Cyberpapi','Adnan','$2a$10$pDcxFNDsHd2juSpEBQSXueb4e2m2u09jCNlnxOcx.i/b86IwLYOL6','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 2
+COMMIT
+INSERT INTO USER VALUES(2,'victorgon@gmail.es','Gonzalo','V\u00edctor','$2a$10$0TEyLzFSCK1rRFjYhMCaJ.VtnMs4q9HZMLlsoKXZU9v7eJViUGjCK','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 3
+COMMIT
+INSERT INTO USER VALUES(3,'maria@outlook.es','Rodr\u00edguez','Mar\u00eda','$2a$10$X/zPwMvRZaI3Z75cMNMX7eEx9urwCy4uIMR0THp16X3jSKaIL7Mmy','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 4
+COMMIT
+INSERT INTO USER VALUES(4,'fatema@outlook.es','aiQueTobillos','Fatema','$2a$10$YmLmgwIBRbIgQgn7TY0wy.Qf7Og8cbJVYEb6jATmQAgMvD0wn3XKe','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 5
+COMMIT
+INSERT INTO USER VALUES(5,'elmoha@gmail.es','seco','Moha','$2a$10$wEJffK6WayEMAdpFdf7ZQOqovK410oWOEMe1Jze5O3jw0a1tE48DC','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 6
+COMMIT
+INSERT INTO USER VALUES(6,'kiko@outlook.es','Saenz','Kiko','$2a$10$Gf7pKW9i7QAnKqEWKmJzP.Fy/FwP9bYD4l7/E8.5Bo94CVDcYTpne','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 7
+COMMIT
+INSERT INTO USER VALUES(7,'kanute@outlook.es','Ribas','Kanute','$2a$10$s6kbqa9L6Er/zlv9FcUx7OyXBDWIakvtbSLB8ZrxGuSK0qW/zjq9K','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 8
+COMMIT
+INSERT INTO USER VALUES(8,'dora@outlook.es','La exploradora','Dora','$2a$10$2igfARErl6xfHfVvMIxrCOPtOGSS5pmkDkI5MExw7.65DaeHthYP2','ROLE_STANDARD')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 9
+COMMIT
+INSERT INTO USER VALUES(9,'admin@email.com','admin','admin','$2a$10$i6Sj47.AyiAfhMbjyEB4nOMKG7srJonKYD51AEEkkthvj/oQHppr2','ROLE_ADMIN')
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 10
+COMMIT
+INSERT INTO INVITATION_FRIENDSHIP VALUES(10,FALSE,2,1)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 11
+COMMIT
+INSERT INTO INVITATION_FRIENDSHIP VALUES(11,FALSE,9,1)
+ALTER SEQUENCE PUBLIC.HIBERNATE_SEQUENCE RESTART WITH 12
+COMMIT

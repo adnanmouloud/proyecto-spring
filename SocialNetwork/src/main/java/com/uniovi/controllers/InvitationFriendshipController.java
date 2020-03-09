@@ -45,10 +45,21 @@ public class InvitationFriendshipController {
 		
 		invitations = invitationFriendshipService.getFriendRequests(pageable, user);
 		
-		model.addAttribute("invitationsList", invitations );
+		model.addAttribute("invitationsList", invitations.getContent() );
 		model.addAttribute("page", invitations);
+		
+		System.err.println(user);
+		System.err.println(invitations.getContent());
 		
 		return "friendship/list";
 	}
 
+	@RequestMapping("/mark/list/update")
+	public String updateList(Model model, Pageable pageable, Principal principal) {
+		User user = usersService.getUserByEmail( principal.getName() );
+
+		Page<InvitationFriendship> ifs = invitationFriendshipService.getFriendRequests(pageable, user);
+		model.addAttribute("invitationsList", ifs.getContent());
+		return "mark/list :: tableMarks";
+	}
 }
