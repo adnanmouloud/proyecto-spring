@@ -40,12 +40,6 @@ public class TestsSocialNetwork {
 	static String PathFirefox65 = "C:\\Program Files\\Mozilla Firefox\\firefox.exe";
 	static String Geckdriver024 = "C:\\Users\\Adnan\\Downloads\\3º Segundo Semestre\\SDI\\Practica\\Material\\P5\\PL-SDI-Sesión5-material\\geckodriver024win64.exe";
 
-	// Paths Víctor clase Comentar cuando se usen los otros)
-
-	static String PathFirefox65 = "C:\\Program Files\\Mozilla Firefox\\firefox.exe";
-	static String Geckdriver024 = "C:\\Users\\uo264074\\Desktop\\SDI2\\PL-SDI-Sesión5-material"
-			+ "\\PL-SDI-Sesio╠ün5-material\\geckodriver024win64.exe";
-
 	static WebDriver driver = getDriver(PathFirefox65, Geckdriver024);
 	static String URL = "http://localhost:8090";
 
