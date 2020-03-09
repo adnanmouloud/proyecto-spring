@@ -1,5 +1,7 @@
 package com.uniovi.repositories;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
@@ -18,5 +20,8 @@ public interface InvitationFriendshipRepository extends CrudRepository<Invitatio
 
 	@Query("SELECT p FROM InvitationFriendship p WHERE p.receptor = ?1 and p.aceptada = false ORDER BY p.id ASC")
 	Streamable<InvitationFriendship> findPendingRequestsToCurrentlyUser(User currentlyUser);
+
+	@Query("SELECT p FROM InvitationFriendship p WHERE p.emisor = ?1")
+	List<InvitationFriendship> findAllSentByUser(User currentUser);
 
 }

@@ -1,6 +1,7 @@
 package com.uniovi.services;
 
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -72,4 +73,15 @@ public class InvitationFriendshipService {
 		return null;
 	}
 
+	
+	public List<User> getUsersWhoReceivedFriendshipInvitationFromCurrentUser(User currentUser) {
+		List<User> usersList = new LinkedList<User>();
+
+		for (InvitationFriendship i : invitationFriendshipRepository.findAllSentByUser(currentUser))
+			usersList.add(i.getReceptor());
+		
+		System.out.println(currentUser.getListaSolicitudesEnviadas());
+
+		return usersList;
+	}
 }

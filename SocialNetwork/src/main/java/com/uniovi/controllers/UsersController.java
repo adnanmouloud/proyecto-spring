@@ -84,7 +84,7 @@ public class UsersController {
 		model.addAttribute("usersList", users.getContent());
 		model.addAttribute("page", users);
 
-		model.addAttribute("invitationsList", usersRequestedFriendship);
+		model.addAttribute("invitationsList", invitationFriendshipService.getUsersWhoReceivedFriendshipInvitationFromCurrentUser(currentlyUser));
 
 		return "user/list";
 
@@ -174,7 +174,7 @@ public class UsersController {
 	public String updateList(Model model, Pageable pageable) {
 		model.addAttribute("usersList", usersService.getUsers(pageable));
 		model.addAttribute("invitationsList",
-				((User) httpSession.getAttribute("currentlyUser")).getListaSolicitudesEnviadas());
+				invitationFriendshipService.getUsersWhoReceivedFriendshipInvitationFromCurrentUser((User) httpSession.getAttribute("currentlyUser")));
 		return "user/list :: tableUsers";
 	}
 }
