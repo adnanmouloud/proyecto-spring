@@ -28,6 +28,18 @@ public class SignUpFormValidator implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lastName", "Error.empty");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "Error.empty");
 
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "dni", "Error.empty");
+		
+		if (user.getName().length() < 5 || user.getName().length() > 24) {
+			errors.rejectValue("name", "Error.signup.name.length");
+		}
+		if (user.getLastName().length() < 5 || user.getLastName().length() > 24) {
+			errors.rejectValue("lastName", "Error.signup.lastName.length");
+		}
+		if (user.getPassword().length() < 5 || user.getPassword().length() > 24) {
+			errors.rejectValue("password", "Error.signup.password.length");
+		}
+
 		if (!user.getPasswordConfirm().equals(user.getPassword())) {
 			errors.rejectValue("passwordConfirm", "Error.signup.passwordConfirm.coincidence");
 		}
