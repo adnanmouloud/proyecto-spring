@@ -1,6 +1,5 @@
 package com.uniovi.controllers;
 
-
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Set;
@@ -37,62 +36,64 @@ public class UsersController {
 
 	@Autowired
 	private SecurityService securityService;
-	
+
 	@Autowired
 	private SignUpFormValidator signUpFormValidator;
-	
+
 	@Autowired
 	private RolesService rolesService;
-	
-	@Autowired  
+
+	@Autowired
 	private HttpSession httpSession;
-	
+
 	@Autowired
 	private InvitationFriendshipService invitationFriendshipService;
-	
 
 	@RequestMapping("/user/list")
-	public String getListado(Model model,Pageable pageable, @RequestParam(value = "", required=false) String searchText) {
-		
+	public String getListado(Model model, Pageable pageable,
+			@RequestParam(value = "", required = false) String searchText) {
+
 		Page<User> users = new PageImpl<User>(new LinkedList<User>());
 		if (searchText != null && !searchText.isEmpty()) {
-			users = usersService.searchUsersByNameOrSurnameorEmail(pageable,searchText);
-		}
-		else {
+			users = usersService.searchUsersByNameOrSurnameorEmail(pageable, searchText);
+		} else {
 			users = usersService.getUsers(pageable);
 		}
-		
+
 		User currentlyUser = (User) httpSession.getAttribute("currentlyUser");
-		
-		//usuarios que me han enviado una solicitud de amistad
-		Set<User> usersReceivedRequestFriendship = invitationFriendshipService.getUserSendedRequest(currentlyUser, users.getContent());
-		
-		//usuarios a los que he enviado una solicitud de amistad
-		Set<User> usersRequestedFriendship = usersService.getUsersReceivedFriendshipFromCurrentlyUser(currentlyUser, users.getContent());
-		
-		//amigos
-		//Set<User> friendsInPage = invitationFriendshipService.getFriends(currentlyUser, users.getContent()) ;
+
+		// usuarios que me han enviado una solicitud de amistad
+		Set<User> usersReceivedRequestFriendship = invitationFriendshipService.getUserSendedRequest(currentlyUser,
+				users.getContent());
+
+		// usuarios a los que he enviado una solicitud de amistad
+		Set<User> usersRequestedFriendship = usersService.getUsersReceivedFriendshipFromCurrentlyUser(currentlyUser,
+				users.getContent());
+
+		// amigos
+		// Set<User> friendsInPage =
+		// invitationFriendshipService.getFriends(currentlyUser, users.getContent()) ;
 
 		Set<User> todasPendientes = new HashSet<User>();
-		
+
 		usersReceivedRequestFriendship.forEach(todasPendientes::add);
 		usersRequestedFriendship.forEach(todasPendientes::add);
-		
 
-		//model.addAttribute("friendList", friendsInPage);
+		// model.addAttribute("friendList", friendsInPage);
 		model.addAttribute("pendientes", todasPendientes);
 		model.addAttribute("usersList", users.getContent());
 		model.addAttribute("page", users);
 
+		model.addAttribute("invitationsList", usersRequestedFriendship);
+
 		return "user/list";
-		
 
 	}
 
 	@RequestMapping("/user/add")
 	public String getUser(Model model) {
 		model.addAttribute("rolesList", rolesService.getRoles());
-		//model.addAttribute("usersList", usersService.getUsers());
+		// model.addAttribute("usersList", usersService.getUsers());
 		return "user/add";
 	}
 
@@ -126,9 +127,9 @@ public class UsersController {
 //		user.setId(id);
 //		usersService.addUser(user);
 //		return "redirect:/user/details/" + id;
-		
+
 		User antiguo = usersService.getUser(id);
-		//antiguo.setDni(user.dni);
+		// antiguo.setDni(user.dni);
 		antiguo.setName(user.getName());
 		antiguo.setLastName(user.getLastName());
 		usersService.addUser(antiguo);
@@ -144,7 +145,7 @@ public class UsersController {
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
 	public String signup(@Validated User user, BindingResult result) {
 		signUpFormValidator.validate(user, result);
-		if(result.hasErrors()) {
+		if (result.hasErrors()) {
 			return "signup";
 		}
 		user.setRole(rolesService.getRoles()[0]);
@@ -155,23 +156,25 @@ public class UsersController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(Model model) {
-		
+
 		return "login";
 	}
 
 	@RequestMapping(value = { "/home" }, method = RequestMethod.GET)
 	public String home(Model model) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		 String email = auth.getName();
-		 User activeUser = usersService.getUserByEmail(email);
+		String email = auth.getName();
+		User activeUser = usersService.getUserByEmail(email);
 		httpSession.setAttribute("currentlyUser", activeUser);
-		 //model.addAttribute("markList", activeUser.getMarks());
+		// model.addAttribute("markList", activeUser.getMarks());
 		return "home";
 	}
-	
+
 	@RequestMapping("/user/list/update")
-	public String updateList(Model model, Pageable pageable){
-	model.addAttribute("usersList", usersService.getUsers(pageable) );
-	return "user/list :: tableUsers";
+	public String updateList(Model model, Pageable pageable) {
+		model.addAttribute("usersList", usersService.getUsers(pageable));
+		model.addAttribute("invitationsList",
+				((User) httpSession.getAttribute("currentlyUser")).getListaSolicitudesEnviadas());
+		return "user/list :: tableUsers";
 	}
 }

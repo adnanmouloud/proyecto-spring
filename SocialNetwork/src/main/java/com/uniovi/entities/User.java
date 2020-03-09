@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -26,10 +27,10 @@ public class User {
 	@Transient // propiedad que no se almacena e la tabla.
 	private String passwordConfirm;
 	
-	@OneToMany(mappedBy ="emisor", cascade =  CascadeType.ALL)
+	@OneToMany(mappedBy ="emisor", cascade =  CascadeType.ALL, fetch = FetchType.EAGER)
 	private Set<InvitationFriendship> listaSolicitudesEnviadas;
 	
-	@OneToMany(mappedBy ="receptor", cascade =  CascadeType.ALL)
+	@OneToMany(mappedBy ="receptor", cascade =  CascadeType.ALL, fetch = FetchType.EAGER)
 	private Set<InvitationFriendship> listaSolicitudesRecibidas;
 	
 	public User(String email, String name, String lastName) {
