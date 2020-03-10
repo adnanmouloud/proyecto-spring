@@ -22,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.uniovi.entities.User;
 import com.uniovi.repositories.UsersRepository;
 import com.uniovi.services.UsersService;
+import com.uniovi.tests.pageobjects.PO_FriendshipView;
 import com.uniovi.tests.pageobjects.PO_LoginView;
 import com.uniovi.tests.pageobjects.PO_Properties;
 import com.uniovi.tests.pageobjects.PO_RegisterView;
@@ -251,8 +252,6 @@ public class TestsSocialNetwork {
 
 		PO_LoginView.fillForm(driver, "victorgon@gmail.es", "123456");
 
-		PO_View.checkElementWithId(driver, "authenticatedEmail");
-		
 		PO_UserSearchView.goToUserListing(driver);
 
 		PO_View.checkElementWithId(driver, "listaUsuarios");
@@ -281,8 +280,6 @@ public class TestsSocialNetwork {
 		PO_View.clickOptionWithId(driver, "login", "identifyYourselfLbl");
 
 		PO_LoginView.fillForm(driver, "victorgon@gmail.es", "123456");
-
-		PO_View.checkElementWithId(driver, "authenticatedEmail");
 
 		PO_UserSearchView.goToUserListing(driver);
 
@@ -317,8 +314,6 @@ public class TestsSocialNetwork {
 
 		PO_LoginView.fillForm(driver, "victorgon@gmail.es", "123456");
 
-		PO_View.checkElementWithId(driver, "authenticatedEmail");
-
 		PO_UserSearchView.goToUserListing(driver);
 
 		PO_View.checkElementWithId(driver, "listaUsuarios");
@@ -352,8 +347,6 @@ public class TestsSocialNetwork {
 		PO_View.clickOptionWithId(driver, "login", "identifyYourselfLbl");
 
 		PO_LoginView.fillForm(driver, "victorgon@gmail.es", "123456");
-
-		PO_View.checkElementWithId(driver, "authenticatedEmail");
 
 		PO_UserSearchView.goToUserListing(driver);
 
@@ -398,8 +391,6 @@ public class TestsSocialNetwork {
 
 		PO_LoginView.fillForm(driver, "victorgon@gmail.es", "123456");
 
-		PO_View.checkElementWithId(driver, "authenticatedEmail");
-
 		PO_UserSearchView.goToUserListing(driver);
 
 		PO_View.checkElementWithId(driver, "listaUsuarios");
@@ -423,17 +414,96 @@ public class TestsSocialNetwork {
 
 		PO_LoginView.fillForm(driver, "victorgon@gmail.es", "123456");
 
-		PO_View.checkElementWithId(driver, "authenticatedEmail");
-
 		PO_UserSearchView.goToUserListing(driver);
 
-		// Enviamos solicitud al usuario 7
+		// Enviamos solicitud al usuario 5
 		PO_View.clickOptionWithIdNoCheck(driver, "addButton5");
-		
+
 		// Comprobamos que el botón para mandar la solicitud está deshabilitado
 		assertFalse(driver.findElement(By.id("addButton5")).isEnabled());
-		
+
 		driver.manage().deleteAllCookies();
 	}
 
+	// PR17. Mostrar el listado de invitaciones de amistad recibidas. Comprobar con
+	// un listado que
+	// contenga varias invitaciones recibidas.
+	@Test
+	public void PR17() {
+		driver.navigate().to(URL);
+
+		PO_View.clickOptionWithId(driver, "login", "identifyYourselfLbl");
+
+		PO_LoginView.fillForm(driver, "adnan@gmail.es", "123456");
+
+		PO_UserSearchView.goToUserListing(driver);
+
+		// Enviamos solicitud al usuario 4
+		PO_View.clickOptionWithIdNoCheck(driver, "addButton4");
+
+		PO_View.clickOptionWithId(driver, "logout", "identifyYourselfLbl");
+
+		PO_LoginView.fillForm(driver, "maria@outlook.es", "123456");
+
+		PO_UserSearchView.goToUserListing(driver);
+
+		// Enviamos otra solicitud al usuario 4
+		PO_View.clickOptionWithIdNoCheck(driver, "addButton4");
+
+		PO_View.clickOptionWithId(driver, "logout", "identifyYourselfLbl");
+
+		// Nos loggeamos con el usuarios 4
+		PO_LoginView.fillForm(driver, "fatema@outlook.es", "123456");
+
+		PO_FriendshipView.goToUserListing(driver);
+
+		// Comprobamos que el número de peticiones son 2
+		List<WebElement> elementos3 = SeleniumUtils.EsperaCargaPagina(driver, "free", "//tbody/tr",
+				PO_View.getTimeout());
+		assertTrue(elementos3.size() == 2);
+
+		driver.manage().deleteAllCookies();
+	}
+
+	// PR18. Mostrar el listado de invitaciones de amistad recibidas. Comprobar con
+	// un listado que
+	// contenga varias invitaciones recibidas.
+	@Test
+	public void PR18() {
+		driver.navigate().to(URL);
+
+		PO_View.clickOptionWithId(driver, "login", "identifyYourselfLbl");
+
+		PO_LoginView.fillForm(driver, "adnan@gmail.es", "123456");
+
+		PO_UserSearchView.goToUserListing(driver);
+
+		// Enviamos solicitud al usuario 4
+		PO_View.clickOptionWithIdNoCheck(driver, "addButton4");
+
+		PO_View.clickOptionWithId(driver, "logout", "identifyYourselfLbl");
+
+		PO_LoginView.fillForm(driver, "maria@outlook.es", "123456");
+
+		PO_UserSearchView.goToUserListing(driver);
+
+		// Enviamos otra solicitud al usuario 4
+		PO_View.clickOptionWithIdNoCheck(driver, "addButton4");
+
+		PO_View.clickOptionWithId(driver, "logout", "identifyYourselfLbl");
+
+		// Nos loggeamos con el usuarios 4
+		PO_LoginView.fillForm(driver, "fatema@outlook.es", "123456");
+
+		PO_FriendshipView.goToUserListing(driver);
+
+		// Aceptamos la del usuario 1 (adnan)
+		PO_View.clickOptionWithIdNoCheck(driver, "acceptButton1");
+		
+		//Comprobamos que esta no está, mientras que la otra sí
+		PO_View.checkNoOptionWithId(driver, "invitation1");
+		PO_View.checkElementWithId(driver, "invitation3");
+
+		driver.manage().deleteAllCookies();
+	}
 }
