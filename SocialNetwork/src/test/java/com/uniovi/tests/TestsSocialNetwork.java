@@ -1,5 +1,6 @@
 package com.uniovi.tests;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.jupiter.api.Test;
 import org.junit.runners.MethodSorters;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -250,15 +252,8 @@ public class TestsSocialNetwork {
 		PO_LoginView.fillForm(driver, "victorgon@gmail.es", "123456");
 
 		PO_View.checkElementWithId(driver, "authenticatedEmail");
-
-		// Pinchamos en la opción de menu de Usuarios: //li[contains(@id, //
-		// 'users-menu')]/a
-		List<WebElement> elementos = PO_View.checkElement(driver, "free", "//li[contains(@id,'users-menu')]/a");
-		elementos.get(0).click();
-
-		elementos = PO_View.checkElement(driver, "free", "//a[contains(@href, 'user/list')]");
-		// Pinchamos en "Ver Usuarios".
-		elementos.get(0).click();
+		
+		PO_UserSearchView.goToUserListing(driver);
 
 		PO_View.checkElementWithId(driver, "listaUsuarios");
 
@@ -289,14 +284,7 @@ public class TestsSocialNetwork {
 
 		PO_View.checkElementWithId(driver, "authenticatedEmail");
 
-		// Pinchamos en la opción de menu de Usuarios: //li[contains(@id, //
-		// 'users-menu')]/a
-		List<WebElement> elementos = PO_View.checkElement(driver, "free", "//li[contains(@id,'users-menu')]/a");
-		elementos.get(0).click();
-
-		elementos = PO_View.checkElement(driver, "free", "//a[contains(@href, 'user/list')]");
-		// Pinchamos en "Ver Usuarios".
-		elementos.get(0).click();
+		PO_UserSearchView.goToUserListing(driver);
 
 		PO_View.checkElementWithId(driver, "listaUsuarios");
 
@@ -331,14 +319,7 @@ public class TestsSocialNetwork {
 
 		PO_View.checkElementWithId(driver, "authenticatedEmail");
 
-		// Pinchamos en la opción de menu de Usuarios: //li[contains(@id, //
-		// 'users-menu')]/a
-		List<WebElement> elementos = PO_View.checkElement(driver, "free", "//li[contains(@id,'users-menu')]/a");
-		elementos.get(0).click();
-
-		elementos = PO_View.checkElement(driver, "free", "//a[contains(@href, 'user/list')]");
-		// Pinchamos en "Ver Usuarios".
-		elementos.get(0).click();
+		PO_UserSearchView.goToUserListing(driver);
 
 		PO_View.checkElementWithId(driver, "listaUsuarios");
 
@@ -374,14 +355,7 @@ public class TestsSocialNetwork {
 
 		PO_View.checkElementWithId(driver, "authenticatedEmail");
 
-		// Pinchamos en la opción de menu de Usuarios: //li[contains(@id, //
-		// 'users-menu')]/a
-		List<WebElement> elementos = PO_View.checkElement(driver, "free", "//li[contains(@id,'users-menu')]/a");
-		elementos.get(0).click();
-
-		elementos = PO_View.checkElement(driver, "free", "//a[contains(@href, 'user/list')]");
-		// Pinchamos en "Ver Usuarios".
-		elementos.get(0).click();
+		PO_UserSearchView.goToUserListing(driver);
 
 		PO_View.checkElementWithId(driver, "listaUsuarios");
 
@@ -426,14 +400,7 @@ public class TestsSocialNetwork {
 
 		PO_View.checkElementWithId(driver, "authenticatedEmail");
 
-		// Pinchamos en la opción de menu de Usuarios: //li[contains(@id, //
-		// 'users-menu')]/a
-		List<WebElement> elementos = PO_View.checkElement(driver, "free", "//li[contains(@id,'users-menu')]/a");
-		elementos.get(0).click();
-
-		elementos = PO_View.checkElement(driver, "free", "//a[contains(@href, 'user/list')]");
-		// Pinchamos en "Ver Usuarios".
-		elementos.get(0).click();
+		PO_UserSearchView.goToUserListing(driver);
 
 		PO_View.checkElementWithId(driver, "listaUsuarios");
 
@@ -458,17 +425,14 @@ public class TestsSocialNetwork {
 
 		PO_View.checkElementWithId(driver, "authenticatedEmail");
 
-		// Pinchamos en la opción de menu de Usuarios: //li[contains(@id, //
-		// 'users-menu')]/a
-		List<WebElement> elementos = PO_View.checkElement(driver, "free", "//li[contains(@id,'users-menu')]/a");
-		elementos.get(0).click();
+		PO_UserSearchView.goToUserListing(driver);
 
-		elementos = PO_View.checkElement(driver, "free", "//a[contains(@href, 'user/list')]");
-		// Pinchamos en "Ver Usuarios".
-		elementos.get(0).click();
-
-		PO_View.clickOptionWithIdNoCheck(driver, "addButtonDisabled1");
-
+		// Enviamos solicitud al usuario 7
+		PO_View.clickOptionWithIdNoCheck(driver, "addButton5");
+		
+		// Comprobamos que el botón para mandar la solicitud está deshabilitado
+		assertFalse(driver.findElement(By.id("addButton5")).isEnabled());
+		
 		driver.manage().deleteAllCookies();
 	}
 

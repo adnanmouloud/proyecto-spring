@@ -46,14 +46,14 @@
 							<div>
 								<div
 									th:if='${#bools.isTrue(#lists.contains(friendsList, user))}'>
-									<button disabled type="button" th:id="${'friendButton' + user.id}"
+									<button disabled type="button" th:id="${'addButton' + user.id}"
 										class="btn btn-success btn-block"
 										th:text='#{users.list.requestFriendship.alreadyFriends}'></button>
 								</div>
 								<div
 									th:if='${#bools.isTrue(#lists.contains(invitationsList, user))}'
 									th:unless='${#bools.isTrue(#lists.contains(friendsList, user))}'>
-									<button disabled type="button" th:id="${'addButtonDisabled' + user.id}"
+									<button disabled type="button" th:id="${'addButton' + user.id}"
 										class="btn btn-warning btn-block"
 										th:text='#{users.list.requestFriendship.pendientes}'></button>
 								</div>
@@ -78,6 +78,7 @@
 																		$("#addButton[[${user.id}]]").removeClass("btn-info");
 																		$("#addButton[[${user.id}]]").addClass("btn-warning");
 																		$("#addButton[[${user.id}]]").text( [[#{users.list.requestFriendship.pendientes}]] );
+																		$("#addButton[[${user.id}]]").id = "addButtonDisabled[[${user.id}]]";
 																	});
 															
 														}); /*]]>*/
