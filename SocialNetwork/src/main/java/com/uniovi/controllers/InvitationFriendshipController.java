@@ -75,6 +75,7 @@ public class InvitationFriendshipController {
 		User friend1 = usersService.getUserByEmail( principal.getName() );
 		
 		friendshipService.createFriendship(friend1, idNewFriend);
+		friendshipService.createFriendship(idNewFriend, friend1);
 		
 		return "redirect:/friendship/list";
 	}

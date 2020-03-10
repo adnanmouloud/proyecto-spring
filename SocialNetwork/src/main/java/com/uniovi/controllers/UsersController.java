@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.uniovi.entities.User;
+import com.uniovi.services.FriendshipService;
 import com.uniovi.services.InvitationFriendshipService;
 import com.uniovi.services.RolesService;
 import com.uniovi.services.SecurityService;
@@ -48,6 +49,9 @@ public class UsersController {
 
 	@Autowired
 	private InvitationFriendshipService invitationFriendshipService;
+	
+	@Autowired
+	private FriendshipService friendshipService;
 
 	@RequestMapping("/user/list")
 	public String getListado(Model model, Pageable pageable,
@@ -85,6 +89,7 @@ public class UsersController {
 		model.addAttribute("page", users);
 
 		model.addAttribute("invitationsList", invitationFriendshipService.getUsersWhoReceivedFriendshipInvitationFromCurrentUser(currentlyUser));
+		model.addAttribute("friendsList", friendshipService.getFriendsOfCurrentUser(currentlyUser));
 
 		return "user/list";
 

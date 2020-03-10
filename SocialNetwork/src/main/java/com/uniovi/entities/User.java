@@ -34,10 +34,10 @@ public class User {
 	private Set<InvitationFriendship> listaSolicitudesRecibidas;
 	
 	@OneToMany(mappedBy ="friend1", cascade =  CascadeType.ALL, fetch = FetchType.EAGER)
-	private Set<Friendship> friendsList1;
+	private Set<Friendship> usersFriends;
 	
 	@OneToMany(mappedBy ="friend2", cascade =  CascadeType.ALL, fetch = FetchType.EAGER)
-	private Set<Friendship> friendsList2;
+	private Set<Friendship> userIsFriendOf;
 	
 	public User(String email, String name, String lastName) {
 		super();

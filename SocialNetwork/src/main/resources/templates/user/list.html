@@ -41,16 +41,25 @@
 
 						<td th:text="${user.name}">Nombre del usuario</td>
 						<td th:text="${user.email}">Email del usuario</td>
-						
+
 						<td>
 							<div>
-								<div th:if='${#bools.isTrue(#lists.contains(invitationsList, user))}'>
-									<button disabled type="button"
-										th:id="${'addButton' + user.id}"
+								<div
+									th:if='${#bools.isTrue(#lists.contains(friendsList, user))}'>
+									<button disabled type="button" th:id="${'addButton' + user.id}"
+										class="btn btn-success btn-block"
+										th:text='#{users.list.requestFriendship.alreadyFriends}'></button>
+								</div>
+								<div
+									th:if='${#bools.isTrue(#lists.contains(invitationsList, user))}'
+									th:unless='${#bools.isTrue(#lists.contains(friendsList, user))}'>
+									<button disabled type="button" th:id="${'addButton' + user.id}"
 										class="btn btn-warning btn-block"
 										th:text='#{users.list.requestFriendship.pendientes}'></button>
 								</div>
-								<div th:if='${#bools.isFalse(#lists.contains(invitationsList, user))} '>
+								<div
+									th:if='${#bools.isFalse(#lists.contains(invitationsList, user))} '
+									th:unless='${#bools.isTrue(#lists.contains(friendsList, user))}'>
 									<button type="button" th:id="${'addButton' + user.id}"
 										class="btn btn-info btn-block"
 										th:text='#{users.list.requestFriendship}'></button>
