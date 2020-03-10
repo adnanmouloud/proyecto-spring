@@ -437,7 +437,7 @@ public class TestsSocialNetwork {
 
 		PO_View.checkElementWithId(driver, "listaUsuarios");
 
-		PO_View.clickOptionWithId(driver, "addButton", "identifyYourselfLbl");
+		PO_View.clickOptionWithIdNoCheck(driver, "addButton1");
 
 		driver.manage().deleteAllCookies();
 	}
@@ -467,7 +467,7 @@ public class TestsSocialNetwork {
 		// Pinchamos en "Ver Usuarios".
 		elementos.get(0).click();
 
-		PO_View.checkElementWithId(driver, "listaUsuarios");
+		PO_View.clickOptionWithIdNoCheck(driver, "addButtonDisabled1");
 
 		driver.manage().deleteAllCookies();
 	}

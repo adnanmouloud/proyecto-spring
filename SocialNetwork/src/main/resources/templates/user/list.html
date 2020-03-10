@@ -46,14 +46,14 @@
 							<div>
 								<div
 									th:if='${#bools.isTrue(#lists.contains(friendsList, user))}'>
-									<button disabled type="button" th:id="${'addButton' + user.id}"
+									<button disabled type="button" th:id="${'friendButton' + user.id}"
 										class="btn btn-success btn-block"
 										th:text='#{users.list.requestFriendship.alreadyFriends}'></button>
 								</div>
 								<div
 									th:if='${#bools.isTrue(#lists.contains(invitationsList, user))}'
 									th:unless='${#bools.isTrue(#lists.contains(friendsList, user))}'>
-									<button disabled type="button" th:id="${'addButton' + user.id}"
+									<button disabled type="button" th:id="${'addButtonDisabled' + user.id}"
 										class="btn btn-warning btn-block"
 										th:text='#{users.list.requestFriendship.pendientes}'></button>
 								</div>

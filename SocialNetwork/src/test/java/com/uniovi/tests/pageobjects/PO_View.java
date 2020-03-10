@@ -85,6 +85,23 @@ public class PO_View {
 		// Tiene que haber un sólo elemento.
 		assertTrue(elementos.size() == 1);
 	}
+	
+	/**
+	 * Hace click al elemento cuya id coincida con la primera id pasada como
+	 * parámetro
+	 * 
+	 * @param driver: apuntando al navegador abierto actualmente.
+	 * @param id: Id del elemento a clickar
+	 */
+	public static void clickOptionWithIdNoCheck(WebDriver driver, String id) {
+		// CLickamos en la opción de registro y esperamos a que se cargue el enlace de
+		// Registro.
+		List<WebElement> elementos = SeleniumUtils.EsperaCargaPagina(driver, "id", id, getTimeout());
+		// Tiene que haber un sólo elemento.
+		assertTrue(elementos.size() == 1);
+		// Ahora lo clickamos
+		elementos.get(0).click();
+	}
 
 	/**
 	 * Hace click al elemento cuya id coincida con la id pasada como parámetro
