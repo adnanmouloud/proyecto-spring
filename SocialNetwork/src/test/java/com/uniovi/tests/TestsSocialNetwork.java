@@ -31,14 +31,14 @@ import com.uniovi.tests.utils.SeleniumUtils;
 public class TestsSocialNetwork {
 
 	// Paths Víctor (Comentar cuando se usen los otros)
-//	static String PathFirefox65 = "C:\\Program Files\\Mozilla Firefox\\firefox.exe";
-//	static String Geckdriver024 = "C:\\Users\\powerservice\\Desktop\\POKEMON\\ATercero"
-//			+ "\\SDI\\Materiales\\Práctica5\\OneDrive_2020-02-27\\PL-SDI-Sesio╠ün5-material\\geckodriver024win64.exe";
+	static String PathFirefox65 = "C:\\Program Files\\Mozilla Firefox\\firefox.exe";
+	static String Geckdriver024 = "C:\\Users\\powerservice\\Desktop\\POKEMON\\ATercero"
+			+ "\\SDI\\Materiales\\Práctica5\\OneDrive_2020-02-27\\PL-SDI-Sesio╠ün5-material\\geckodriver024win64.exe";
 
 	// Paths Adnan (Comentar cuando se usen los otros)
 
-	static String PathFirefox65 = "C:\\Program Files\\Mozilla Firefox\\firefox.exe";
-	static String Geckdriver024 = "C:\\Users\\Adnan\\Downloads\\3º Segundo Semestre\\SDI\\Practica\\Material\\P5\\PL-SDI-Sesión5-material\\geckodriver024win64.exe";
+//	static String PathFirefox65 = "C:\\Program Files\\Mozilla Firefox\\firefox.exe";
+//	static String Geckdriver024 = "C:\\Users\\Adnan\\Downloads\\3º Segundo Semestre\\SDI\\Practica\\Material\\P5\\PL-SDI-Sesión5-material\\geckodriver024win64.exe";
 
 	static WebDriver driver = getDriver(PathFirefox65, Geckdriver024);
 	static String URL = "http://localhost:8090";
@@ -160,7 +160,8 @@ public class TestsSocialNetwork {
 
 		PO_LoginView.fillForm(driver, "admin@email.com", "123456");
 
-		PO_View.checkElementWithId(driver, "authenticatedEmail");
+		// Esto solo sale en la página por defecto del administrador
+		PO_View.checkElementWithId(driver, "listaUsuarios");
 
 		driver.manage().deleteAllCookies();
 	}
@@ -174,6 +175,7 @@ public class TestsSocialNetwork {
 
 		PO_LoginView.fillForm(driver, "victorgon@gmail.es", "123456");
 
+		// Esto solo sale en la página por defecto de usuarios standard
 		PO_View.checkElementWithId(driver, "authenticatedEmail");
 
 		driver.manage().deleteAllCookies();

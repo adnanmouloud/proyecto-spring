@@ -171,7 +171,10 @@ public class UsersController {
 		String email = auth.getName();
 		User activeUser = usersService.getUserByEmail(email);
 		httpSession.setAttribute("currentlyUser", activeUser);
-		// model.addAttribute("markList", activeUser.getMarks());
+
+		if (activeUser.getRole().equals(rolesService.getRoles()[1]))
+			return "redirect:/user/list";
+		
 		return "home";
 	}
 
