@@ -457,9 +457,7 @@ public class TestsSocialNetwork {
 		PO_FriendshipView.goToInvitationsListing(driver);
 
 		// Comprobamos que el número de peticiones son 2
-		List<WebElement> elementos3 = SeleniumUtils.EsperaCargaPagina(driver, "free", "//tbody/tr",
-				PO_View.getTimeout());
-		assertTrue(elementos3.size() == 2);
+		assertTrue(PO_View.countListingElementsOnView(driver) == 2);
 
 		driver.manage().deleteAllCookies();
 	}
@@ -520,16 +518,12 @@ public class TestsSocialNetwork {
 		PO_FriendshipView.goToFriendsListing(driver);
 
 		// Comprobamos que el número de amigos es 5 (máximo por página)
-		List<WebElement> elementos1 = SeleniumUtils.EsperaCargaPagina(driver, "free", "//tbody/tr",
-				PO_View.getTimeout());
-		assertTrue(elementos1.size() == 5);
+		assertTrue(PO_View.countListingElementsOnView(driver) == 5);
 
 		PO_View.clickOptionWithIdNoCheck(driver, "siguiente");
 
 		// Comprobamos que el número de amigos es 1 (máximo por página)
-		List<WebElement> elementos2 = SeleniumUtils.EsperaCargaPagina(driver, "free", "//tbody/tr",
-				PO_View.getTimeout());
-		assertTrue(elementos2.size() == 1);
+		assertTrue(PO_View.countListingElementsOnView(driver) == 1);
 
 		driver.manage().deleteAllCookies();
 	}

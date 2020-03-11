@@ -124,4 +124,11 @@ public class PO_View {
 		List<WebElement> list = driver.findElements(By.xpath("//*[contains(@id,'" + id + "')]"));
 		assertTrue("Texto " + id + " aun presente !", list.size() == 0);
 	}
+
+	public static int countListingElementsOnView(WebDriver driver) {
+		List<WebElement> elements = SeleniumUtils.EsperaCargaPagina(driver, "free", "//tbody/tr",
+				PO_View.getTimeout());
+		
+		return elements.size();
+	}
 }
