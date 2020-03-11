@@ -9,6 +9,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Repository;
 
+import com.google.common.base.Optional;
 import com.uniovi.entities.InvitationFriendship;
 import com.uniovi.entities.User;
 
@@ -23,5 +24,8 @@ public interface InvitationFriendshipRepository extends CrudRepository<Invitatio
 
 	@Query("SELECT p FROM InvitationFriendship p WHERE p.emisor = ?1")
 	List<InvitationFriendship> findAllSentByUser(User currentUser);
+
+	@Query("SELECT p FROM InvitationFriendship p WHERE p.emisor = ?1 AND p.receptor.id = ?2")
+	Optional<InvitationFriendship> getInvitationBySenderAndReceiverID(User currentUser, Long idNewFriend);
 
 }

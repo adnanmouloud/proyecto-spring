@@ -70,12 +70,14 @@ public class InvitationFriendshipController {
 	@RequestMapping(value="/friendship/accept", method = RequestMethod.POST)
 	public String acceptRequest(@RequestParam Long idNewFriend, @RequestParam Long idInvitation, Model model, Principal principal )
 	{
-		invitationFriendshipService.getInvitationById(idInvitation).setAceptada(true);;
+		invitationFriendshipService.getInvitationById(idInvitation).setAceptada(true);
 		
-		User friend1 = usersService.getUserByEmail( principal.getName() );
+		User currentUser = usersService.getUserByEmail( principal.getName() );
 		
-		friendshipService.createFriendship(friend1, idNewFriend);
-		friendshipService.createFriendship(idNewFriend, friend1);
+		invitationFriendshipService.setInvitationAcceptedIfExiststs(currentUser, idNewFriend);
+		
+		friendshipService.createFriendship(currentUser, idNewFriend);
+		friendshipService.createFriendship(idNewFriend, currentUser);
 		
 		return "redirect:/friendship/list";
 	}

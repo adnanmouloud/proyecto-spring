@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.google.common.base.Optional;
 import com.uniovi.entities.InvitationFriendship;
 import com.uniovi.entities.User;
 import com.uniovi.repositories.InvitationFriendshipRepository;
@@ -86,5 +87,13 @@ public class InvitationFriendshipService {
 
 	public InvitationFriendship getInvitationById(Long idInvitation) {
 		return invitationFriendshipRepository.findById(idInvitation).get();
+	}
+
+
+	public void setInvitationAcceptedIfExiststs(User currentUser, Long idNewFriend) {
+		Optional<InvitationFriendship> oi = invitationFriendshipRepository.getInvitationBySenderAndReceiverID(currentUser, idNewFriend);
+		
+		if (oi.isPresent())
+			oi.get().setAceptada(true);
 	}
 }
