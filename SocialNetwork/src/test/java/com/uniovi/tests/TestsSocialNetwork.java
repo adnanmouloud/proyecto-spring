@@ -34,14 +34,14 @@ import com.uniovi.tests.utils.SeleniumUtils;
 public class TestsSocialNetwork {
 
 	// Paths Víctor (Comentar cuando se usen los otros)
-	static String PathFirefox65 = "C:\\Program Files\\Mozilla Firefox\\firefox.exe";
-	static String Geckdriver024 = "C:\\Users\\powerservice\\Desktop\\POKEMON\\ATercero"
-			+ "\\SDI\\Materiales\\Práctica5\\OneDrive_2020-02-27\\PL-SDI-Sesio╠ün5-material\\geckodriver024win64.exe";
+//	static String PathFirefox65 = "C:\\Program Files\\Mozilla Firefox\\firefox.exe";
+//	static String Geckdriver024 = "C:\\Users\\powerservice\\Desktop\\POKEMON\\ATercero"
+//			+ "\\SDI\\Materiales\\Práctica5\\OneDrive_2020-02-27\\PL-SDI-Sesio╠ün5-material\\geckodriver024win64.exe";
 
 	// Paths Adnan (Comentar cuando se usen los otros)
 
-//	static String PathFirefox65 = "C:\\Program Files\\Mozilla Firefox\\firefox.exe";
-//	static String Geckdriver024 = "C:\\Users\\Adnan\\Downloads\\3º Segundo Semestre\\SDI\\Practica\\Material\\P5\\PL-SDI-Sesión5-material\\geckodriver024win64.exe";
+	static String PathFirefox65 = "C:\\Program Files\\Mozilla Firefox\\firefox.exe";
+	static String Geckdriver024 = "C:\\Users\\Adnan\\Downloads\\3º Segundo Semestre\\SDI\\Practica\\Material\\P5\\PL-SDI-Sesión5-material\\geckodriver024win64.exe";
 
 	static WebDriver driver = getDriver(PathFirefox65, Geckdriver024);
 	static String URL = "http://localhost:8090";
@@ -251,20 +251,22 @@ public class TestsSocialNetwork {
 
 		PO_LoginView.fillForm(driver, "victorgon@gmail.es", "123456");
 
-		PO_UserSearchView.goToUserListing(driver);
-
+		 PO_UserSearchView.goToUserListing(driver);
+		
 		PO_View.checkElementWithId(driver, "listaUsuarios");
 
-		List<User> users = new ArrayList<User>();
+		// Contamos el número de usuarios que hay en la primera página
+		List<WebElement> elementos = SeleniumUtils.EsperaCargaPagina(driver, "free", "//tbody/tr",
+				PO_View.getTimeout());
+		assertTrue(elementos.size() == 5);
 
-		int i = 0;
-		for (User user : users) {
-			if (i == 5) {
-				PO_View.clickOptionWithId(driver, "siguiente", "listaUsuarios");
-			}
-			PO_View.checkElement(driver, "text", user.getEmail());
-			i++;
-		}
+		PO_View.clickOptionWithId(driver, "siguiente", "listaUsuarios");
+
+		// Contamos el número de usuarios que hay en la primera página
+		List<WebElement> elementos2 = SeleniumUtils.EsperaCargaPagina(driver, "free", "//tbody/tr",
+				PO_View.getTimeout());
+		System.err.println(elementos2.size());
+		assertTrue(elementos2.size() == 2);
 
 		driver.manage().deleteAllCookies();
 	}
@@ -287,17 +289,19 @@ public class TestsSocialNetwork {
 		// Pinchamos en buscar
 		PO_View.clickOptionWithId(driver, "buscar", "listaUsuarios");
 
-		// Comprobar que están todos los usuarios del sistema igual que la P11
-		List<User> users = new ArrayList<User>();
+		// Comprobar que están todos los usuarios del sistema
 
-		int i = 0;
-		for (User user : users) {
-			if (i == 5) {
-				PO_View.clickOptionWithId(driver, "siguiente", "listaUsuarios");
-			}
-			PO_View.checkElement(driver, "text", user.getEmail());
-			i++;
-		}
+		// Contamos el número de usuarios que hay en la primera página
+		List<WebElement> elementos = SeleniumUtils.EsperaCargaPagina(driver, "free", "//tbody/tr",
+				PO_View.getTimeout());
+		assertTrue(elementos.size() == 5);
+
+		PO_View.clickOptionWithId(driver, "siguiente", "listaUsuarios");
+
+		// Contamos el número de usuarios que hay en la primera página
+		List<WebElement> elementos2 = SeleniumUtils.EsperaCargaPagina(driver, "free", "//tbody/tr",
+				PO_View.getTimeout());
+		assertTrue(elementos2.size() == 2);
 
 		driver.manage().deleteAllCookies();
 	}
@@ -321,16 +325,9 @@ public class TestsSocialNetwork {
 		PO_UserSearchView.fillField(driver, "yyyyyxq");
 
 		// Comprobar que la tabla está vacía
-		List<User> users = new ArrayList<User>();
-
-		int i = 0;
-		for (User user : users) {
-			if (i == 5) {
-				PO_View.clickOptionWithId(driver, "siguiente", "listaUsuarios");
-			}
-			SeleniumUtils.textoNoPresentePagina(driver, user.getEmail());
-			i++;
-		}
+		List<WebElement> elementos = SeleniumUtils.EsperaCargaPagina(driver, "free", "//tbody/tr",
+				PO_View.getTimeout());
+		assertTrue(elementos.size() == 0);
 
 		driver.manage().deleteAllCookies();
 	}
