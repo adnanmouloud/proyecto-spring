@@ -4,6 +4,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.uniovi.entities.Friendship;
@@ -26,6 +28,10 @@ public class FriendshipService {
 		
 		friendshipRepository.save(friendship);
 	}
+	
+	public void addFriendship(Friendship fr) {
+		friendshipRepository.save(fr);
+	}
 
 	public void createFriendship(Long idNewFriend, User friend1) {
 		User friend2 = usersRepository.findById(idNewFriend).get();
@@ -41,5 +47,9 @@ public class FriendshipService {
 			usersList.add(i.getFriend2());
 
 		return usersList;
+	}
+
+	public Page<User> getFriendsOfUser(Pageable pageable, User user) {
+		return friendshipRepository.getFriendsOfUser(pageable, user);
 	}
 }

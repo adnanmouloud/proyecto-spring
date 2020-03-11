@@ -5,6 +5,7 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.uniovi.entities.Friendship;
 import com.uniovi.entities.User;
 
 @Service
@@ -14,6 +15,9 @@ public class InsertSampleDataService {
 
 	@Autowired
 	private RolesService rolesService;
+	
+	@Autowired
+	private FriendshipService friendshipService;
 	
 	@PostConstruct
 	public void init() {
@@ -62,5 +66,41 @@ public class InsertSampleDataService {
 		usersService.addUser(user7);
 		usersService.addUser(user8);
 		usersService.addUser(user9);
+		
+		Friendship fr19 = new Friendship(user1, user9);
+		Friendship fr91 = new Friendship(user9, user1);
+		
+		Friendship fr29 = new Friendship(user2, user9);
+		Friendship fr92 = new Friendship(user9, user2);
+		
+		Friendship fr39 = new Friendship(user3, user9);
+		Friendship fr93 = new Friendship(user9, user3);
+		
+		Friendship fr49 = new Friendship(user4, user9);
+		Friendship fr94 = new Friendship(user9, user4);
+		
+		Friendship fr59 = new Friendship(user5, user9);
+		Friendship fr95 = new Friendship(user9, user5);
+		
+		Friendship fr69 = new Friendship(user6, user9);
+		Friendship fr96 = new Friendship(user9, user6);
+		
+		friendshipService.addFriendship(fr19);
+		friendshipService.addFriendship(fr91);
+		
+		friendshipService.addFriendship(fr29);
+		friendshipService.addFriendship(fr92);
+		
+		friendshipService.addFriendship(fr39);
+		friendshipService.addFriendship(fr93);
+		
+		friendshipService.addFriendship(fr49);
+		friendshipService.addFriendship(fr94);
+		
+		friendshipService.addFriendship(fr59);
+		friendshipService.addFriendship(fr95);
+		
+		friendshipService.addFriendship(fr69);
+		friendshipService.addFriendship(fr96);
 	}
 }

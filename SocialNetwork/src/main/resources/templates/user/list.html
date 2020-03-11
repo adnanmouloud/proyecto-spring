@@ -37,7 +37,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="user : ${usersList}">
+					<tr th:each="user : ${usersList}" th:id="${'user' + user.id}">
 
 						<td th:text="${user.name}">Nombre del usuario</td>
 						<td th:text="${user.email}">Email del usuario</td>

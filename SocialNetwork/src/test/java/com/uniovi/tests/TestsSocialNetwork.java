@@ -54,7 +54,6 @@ public class TestsSocialNetwork {
 	}
 
 	// Antes de cada prueba se navega al URL home de la aplicaciónn
-	// TODO: No me está funcionando el before, cuando funcione, borrar
 	// "driver.navigate()" de todos los tests
 
 	@Before
@@ -455,7 +454,7 @@ public class TestsSocialNetwork {
 		// Nos loggeamos con el usuarios 4
 		PO_LoginView.fillForm(driver, "fatema@outlook.es", "123456");
 
-		PO_FriendshipView.goToUserListing(driver);
+		PO_FriendshipView.goToInvitationsListing(driver);
 
 		// Comprobamos que el número de peticiones son 2
 		List<WebElement> elementos3 = SeleniumUtils.EsperaCargaPagina(driver, "free", "//tbody/tr",
@@ -495,14 +494,42 @@ public class TestsSocialNetwork {
 		// Nos loggeamos con el usuarios 4
 		PO_LoginView.fillForm(driver, "fatema@outlook.es", "123456");
 
-		PO_FriendshipView.goToUserListing(driver);
+		PO_FriendshipView.goToInvitationsListing(driver);
 
 		// Aceptamos la del usuario 1 (adnan)
 		PO_View.clickOptionWithIdNoCheck(driver, "acceptButton1");
-		
-		//Comprobamos que esta no está, mientras que la otra sí
+
+		// Comprobamos que esta no está, mientras que la otra sí
 		PO_View.checkNoOptionWithId(driver, "invitation1");
 		PO_View.checkElementWithId(driver, "invitation3");
+
+		driver.manage().deleteAllCookies();
+	}
+
+	// PR19. Mostrar el listado de amigos de un usuario. Comprobar que el listado
+	// contiene los amigos
+	// que deben ser
+	@Test
+	public void PR19() {
+		driver.navigate().to(URL);
+
+		PO_View.clickOptionWithId(driver, "login", "identifyYourselfLbl");
+
+		PO_LoginView.fillForm(driver, "admin@email.com", "123456");
+
+		PO_FriendshipView.goToFriendsListing(driver);
+
+		// Comprobamos que el número de amigos es 5 (máximo por página)
+		List<WebElement> elementos1 = SeleniumUtils.EsperaCargaPagina(driver, "free", "//tbody/tr",
+				PO_View.getTimeout());
+		assertTrue(elementos1.size() == 5);
+
+		PO_View.clickOptionWithIdNoCheck(driver, "siguiente");
+
+		// Comprobamos que el número de amigos es 1 (máximo por página)
+		List<WebElement> elementos2 = SeleniumUtils.EsperaCargaPagina(driver, "free", "//tbody/tr",
+				PO_View.getTimeout());
+		assertTrue(elementos2.size() == 1);
 
 		driver.manage().deleteAllCookies();
 	}
