@@ -262,7 +262,7 @@ public class TestsSocialNetwork {
 
 		PO_View.clickOptionWithId(driver, "siguiente", "listaUsuarios");
 
-		// Contamos el número de usuarios que hay en la primera página
+		// Contamos el número de usuarios que hay en la segunda página
 		List<WebElement> elementos2 = SeleniumUtils.EsperaCargaPagina(driver, "free", "//tbody/tr",
 				PO_View.getTimeout());
 		System.err.println(elementos2.size());
@@ -298,7 +298,7 @@ public class TestsSocialNetwork {
 
 		PO_View.clickOptionWithId(driver, "siguiente", "listaUsuarios");
 
-		// Contamos el número de usuarios que hay en la primera página
+		// Contamos el número de usuarios que hay en la segunda página
 		List<WebElement> elementos2 = SeleniumUtils.EsperaCargaPagina(driver, "free", "//tbody/tr",
 				PO_View.getTimeout());
 		assertTrue(elementos2.size() == 2);
