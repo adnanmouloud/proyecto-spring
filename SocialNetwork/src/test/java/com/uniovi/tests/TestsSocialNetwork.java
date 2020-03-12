@@ -34,14 +34,14 @@ import com.uniovi.tests.utils.SeleniumUtils;
 public class TestsSocialNetwork {
 
 	// Paths Víctor (Comentar cuando se usen los otros)
-//	static String PathFirefox65 = "C:\\Program Files\\Mozilla Firefox\\firefox.exe";
-//	static String Geckdriver024 = "C:\\Users\\powerservice\\Desktop\\POKEMON\\ATercero"
-//			+ "\\SDI\\Materiales\\Práctica5\\OneDrive_2020-02-27\\PL-SDI-Sesio╠ün5-material\\geckodriver024win64.exe";
+	static String PathFirefox65 = "C:\\Program Files\\Mozilla Firefox\\firefox.exe";
+	static String Geckdriver024 = "C:\\Users\\powerservice\\Desktop\\POKEMON\\ATercero"
+			+ "\\SDI\\Materiales\\Práctica5\\OneDrive_2020-02-27\\PL-SDI-Sesio╠ün5-material\\geckodriver024win64.exe";
 
 	// Paths Adnan (Comentar cuando se usen los otros)
 
-	static String PathFirefox65 = "C:\\Program Files\\Mozilla Firefox\\firefox.exe";
-	static String Geckdriver024 = "C:\\Users\\Adnan\\Downloads\\3º Segundo Semestre\\SDI\\Practica\\Material\\P5\\PL-SDI-Sesión5-material\\geckodriver024win64.exe";
+//	static String PathFirefox65 = "C:\\Program Files\\Mozilla Firefox\\firefox.exe";
+//	static String Geckdriver024 = "C:\\Users\\Adnan\\Downloads\\3º Segundo Semestre\\SDI\\Practica\\Material\\P5\\PL-SDI-Sesión5-material\\geckodriver024win64.exe";
 
 	static WebDriver driver = getDriver(PathFirefox65, Geckdriver024);
 	static String URL = "http://localhost:8090";
@@ -82,6 +82,7 @@ public class TestsSocialNetwork {
 	// PR01. Prueba de registro de Usuario con datos válidos
 	@Test
 	public void PR01() {
+		driver.manage().deleteAllCookies();
 		driver.navigate().to(URL);
 
 		PO_View.clickOptionWithId(driver, "signup", "registerAsUserLbl");
@@ -96,6 +97,7 @@ public class TestsSocialNetwork {
 	// PR02. Prueba de registro de Usuario con datos inválidos (campos vacíos)
 	@Test
 	public void PR02() {
+		driver.manage().deleteAllCookies();
 		driver.navigate().to(URL);
 
 		PO_View.clickOptionWithId(driver, "signup", "registerAsUserLbl");
@@ -125,6 +127,7 @@ public class TestsSocialNetwork {
 	// contraseña incorrecta)
 	@Test
 	public void PR03() {
+		driver.manage().deleteAllCookies();
 		driver.navigate().to(URL);
 
 		PO_View.clickOptionWithId(driver, "signup", "registerAsUserLbl");
@@ -140,6 +143,7 @@ public class TestsSocialNetwork {
 	// PR04. Prueba de registro de Usuario con datos inválidos (email existente)
 	@Test
 	public void PR04() {
+		driver.manage().deleteAllCookies();
 		driver.navigate().to(URL);
 
 		PO_View.clickOptionWithId(driver, "signup", "registerAsUserLbl");
@@ -155,7 +159,7 @@ public class TestsSocialNetwork {
 	// PR05. Prueba de inicio de sesión con datos válidos (administrador)
 	@Test
 	public void PR05() {
-		// TODO: Hacer que la /home de admin sea distinta a la de un Standard User
+		driver.manage().deleteAllCookies();
 		driver.navigate().to(URL);
 
 		PO_View.clickOptionWithId(driver, "login", "identifyYourselfLbl");
@@ -171,6 +175,7 @@ public class TestsSocialNetwork {
 	// PR06. Prueba de inicio de sesión con datos válidos (usuario standard)
 	@Test
 	public void PR06() {
+		driver.manage().deleteAllCookies();
 		driver.navigate().to(URL);
 
 		PO_View.clickOptionWithId(driver, "login", "identifyYourselfLbl");
@@ -187,6 +192,7 @@ public class TestsSocialNetwork {
 	// email y contraseña vacíos)
 	@Test
 	public void PR07() {
+		driver.manage().deleteAllCookies();
 		driver.navigate().to(URL);
 
 		PO_View.clickOptionWithId(driver, "login", "identifyYourselfLbl");
@@ -203,6 +209,7 @@ public class TestsSocialNetwork {
 	// incorrecta)
 	@Test
 	public void PR08() {
+		driver.manage().deleteAllCookies();
 		driver.navigate().to(URL);
 
 		PO_View.clickOptionWithId(driver, "login", "identifyYourselfLbl");
@@ -219,6 +226,7 @@ public class TestsSocialNetwork {
 	// sesión (Login)
 	@Test
 	public void PR09() {
+		driver.manage().deleteAllCookies();
 		driver.navigate().to(URL);
 
 		PO_View.clickOptionWithId(driver, "login", "identifyYourselfLbl");
@@ -234,6 +242,7 @@ public class TestsSocialNetwork {
 	// está autenticado
 	@Test
 	public void PR10() {
+		driver.manage().deleteAllCookies();
 		driver.navigate().to(URL);
 
 		PO_View.checkNoOptionWithId(driver, "logout");
@@ -245,6 +254,7 @@ public class TestsSocialNetwork {
 	// que existen en el sistema.
 	@Test
 	public void PR11() {
+		driver.manage().deleteAllCookies();
 		driver.navigate().to(URL);
 
 		PO_View.clickOptionWithId(driver, "login", "identifyYourselfLbl");
@@ -266,7 +276,9 @@ public class TestsSocialNetwork {
 		List<WebElement> elementos2 = SeleniumUtils.EsperaCargaPagina(driver, "free", "//tbody/tr",
 				PO_View.getTimeout());
 		System.err.println(elementos2.size());
-		assertTrue(elementos2.size() == 2);
+		
+		// Como se crea un usuario en los tests anteriores, este sería el nuevo resultado esperado
+		assertTrue(elementos2.size() == 3);
 
 		driver.manage().deleteAllCookies();
 	}
@@ -276,6 +288,7 @@ public class TestsSocialNetwork {
 	// que corresponde con el listado usuarios existentes en el sistema.
 	@Test
 	public void PR12() {
+		driver.manage().deleteAllCookies();
 		driver.navigate().to(URL);
 
 		PO_View.clickOptionWithId(driver, "login", "identifyYourselfLbl");
@@ -301,7 +314,9 @@ public class TestsSocialNetwork {
 		// Contamos el número de usuarios que hay en la segunda página
 		List<WebElement> elementos2 = SeleniumUtils.EsperaCargaPagina(driver, "free", "//tbody/tr",
 				PO_View.getTimeout());
-		assertTrue(elementos2.size() == 2);
+		
+		// Como se crea un usuario en los tests anteriores, este sería el nuevo resultado esperado
+		assertTrue(elementos2.size() == 3);
 
 		driver.manage().deleteAllCookies();
 	}
@@ -311,6 +326,7 @@ public class TestsSocialNetwork {
 	// la página que corresponde, con la lista de usuarios vacía.
 	@Test
 	public void PR13() {
+		driver.manage().deleteAllCookies();
 		driver.navigate().to(URL);
 
 		PO_View.clickOptionWithId(driver, "login", "identifyYourselfLbl");
@@ -338,6 +354,7 @@ public class TestsSocialNetwork {
 	// nombre, apellidos o de su email.
 	@Test
 	public void PR14() {
+		driver.manage().deleteAllCookies();
 		driver.navigate().to(URL);
 
 		PO_View.clickOptionWithId(driver, "login", "identifyYourselfLbl");
@@ -381,6 +398,7 @@ public class TestsSocialNetwork {
 	// (punto siguiente).
 	@Test
 	public void PR15() {
+		driver.manage().deleteAllCookies();
 		driver.navigate().to(URL);
 
 		PO_View.clickOptionWithId(driver, "login", "identifyYourselfLbl");
@@ -404,6 +422,7 @@ public class TestsSocialNetwork {
 	// previamente.
 	@Test
 	public void PR16() {
+		driver.manage().deleteAllCookies();
 		driver.navigate().to(URL);
 
 		PO_View.clickOptionWithId(driver, "login", "identifyYourselfLbl");
@@ -426,6 +445,7 @@ public class TestsSocialNetwork {
 	// contenga varias invitaciones recibidas.
 	@Test
 	public void PR17() {
+		driver.manage().deleteAllCookies();
 		driver.navigate().to(URL);
 
 		PO_View.clickOptionWithId(driver, "login", "identifyYourselfLbl");
@@ -464,6 +484,7 @@ public class TestsSocialNetwork {
 	// contenga varias invitaciones recibidas.
 	@Test
 	public void PR18() {
+		driver.manage().deleteAllCookies();
 		driver.navigate().to(URL);
 
 		PO_View.clickOptionWithId(driver, "login", "identifyYourselfLbl");
@@ -506,6 +527,7 @@ public class TestsSocialNetwork {
 	// que deben ser
 	@Test
 	public void PR19() {
+		driver.manage().deleteAllCookies();
 		driver.navigate().to(URL);
 
 		PO_View.clickOptionWithId(driver, "login", "identifyYourselfLbl");
