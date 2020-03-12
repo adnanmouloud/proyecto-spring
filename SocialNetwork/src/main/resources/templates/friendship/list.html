@@ -5,11 +5,10 @@
 	<!-- Barra de Navegación superior -->
 	<nav th:replace="fragments/nav" />
 	<div class="container">
-		<h2 id="listaSolicitudes">Solicitudes</h2>
+		<h2 id="listaSolicitudes" th:text="#{requests}">Solicitudes</h2>
 		<form class="navbar-form" action="/friendship/list"></form>
-		<p>Las solicitudes que actualmente figuran en el sistema son las
-			siguientes:</p>
-		<button type="button" id="updateButton" class="btn btn-default">Actualizar</button>
+		<p th:text="#{requests.now}"></p>
+		<button type="button" id="updateButton" class="btn btn-default" th:text="#{update}">Actualizar</button>
 		<script>
 			$("#updateButton").click(function() {
 				var numberPage = [[${param.page}]];
@@ -27,7 +26,7 @@
 				<thead>
 					<tr>
 
-						<th>Nombre</th>
+						<th th:text="#{name}">Nombre:</th>
 						<th class="col-md-1"></th>
 
 
@@ -36,7 +35,7 @@
 				<tbody>
 					<tr th:each="invitation : ${invitationsList}" th:id="${'invitation' + invitation.emisor.id}">
 
-						<td th:text="${invitation.emisor}">Nombre</td>
+						<td th:text="${invitation.emisor}" th:text="#{name}">Nombre</td>
 						<td>
 						<div></div>
 							<div>
