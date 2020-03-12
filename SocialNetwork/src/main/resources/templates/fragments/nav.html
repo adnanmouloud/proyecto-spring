@@ -16,31 +16,31 @@
 				<!-- Menú de usuarios -->
 				<li id="users-menu" class="dropdown"
 					><a
-					class="dropdown-toggle" data-toggle="dropdown" href="#">
-						Gestión de Usuarios <span class="caret"></span>
+					class="dropdown-toggle" data-toggle="dropdown" href="#"  th:text="#{user.management}">
+						 <span class="caret"></span>
 				</a>
 					<ul class="dropdown-menu">
-						<li><a href="/user/list">Ver Usuarios</a></li>
+						<li><a href="/user/list" th:text="#{user.show}"></a></li>
 					</ul></li>
 					
 					<!-- Menú de invitaciones -->
 				<li id="invitations-menu" class="dropdown"
 					><a
-					class="dropdown-toggle" data-toggle="dropdown" href="#">
-						Gestión de Invitaciones <span class="caret"></span>
+					class="dropdown-toggle" data-toggle="dropdown" href="#"  th:text="#{invitation.management}">
+						 <span class="caret"></span>
 				</a>
 					<ul class="dropdown-menu">
-						<li><a href="/friendship/list">Ver Solicitudes</a></li>
+						<li><a href="/friendship/list" th:text="#{invitation.show}"></a></li>
 					</ul></li>
 					
 					<!-- Menú de amigos -->
 				<li id="friends-menu" class="dropdown"
 					><a
-					class="dropdown-toggle" data-toggle="dropdown" href="#">
-						Gestión de Amigos <span class="caret"></span>
+					class="dropdown-toggle" data-toggle="dropdown" href="#"  th:text="#{friend.management}">
+					 <span class="caret"></span>
 				</a>
 					<ul class="dropdown-menu">
-						<li><a href="/friend/list">Ver Amigos</a></li>
+						<li><a href="/friend/list" th:text="#{friend.show}"></a></li>
 					</ul></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
@@ -72,7 +72,7 @@
 						class="glyphicon glyphicon-log-in"></span> Identifícate
 				</a></li>
 				<li id="logout" sec:authorize="isAuthenticated()"><a href="/logout"> <span
-						class="glyphicon glyphicon-log-out"></span> Desconectar
+						class="glyphicon glyphicon-log-out" th:text="#{logout.message}"></span>
 				</a></li>
 			</ul>
 		</div>
