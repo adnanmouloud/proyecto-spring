@@ -27,15 +27,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable().authorizeRequests()
 				.antMatchers("/css/**", "/img/**", "/script/**", "/", "/signup", "/login/**").permitAll()
-				/* TODO: Aquí hay que manejar los permisos más tarde */
-//				.antMatchers("/mark/add").hasAuthority("ROLE_PROFESSOR")
-//				.antMatchers("/mark/edit/*").hasAuthority("ROLE_PROFESSOR")
-//				.antMatchers("/mark/delete/*").hasAuthority("ROLE_PROFESSOR")
-//				.antMatchers("/teacher/add").hasAuthority("ROLE_ADMIN")
-//				.antMatchers("/teacher/edit/*").hasAuthority("ROLE_ADMIN")
-//				.antMatchers("/teacher/delete/*").hasAuthority("ROLE_ADMIN")
-//				.antMatchers("/teacher/details/*").hasAnyAuthority("ROLE_PROFESSOR", "ROLE_ADMIN")
-//				.antMatchers("/mark/**").hasAnyAuthority("ROLE_STUDENT", "ROLE_PROFESSOR", "ROLE_ADMIN")
+				.antMatchers("/user/manage").hasAuthority("ROLE_ADMIN")
 				.antMatchers("/friend/**").hasAnyAuthority("ROLE_STANDARD", "ROLE_ADMIN")
 				.antMatchers("/friendship/**").hasAnyAuthority("ROLE_STANDARD", "ROLE_ADMIN")
 				.antMatchers("/user/**").hasAnyAuthority("ROLE_STANDARD", "ROLE_ADMIN")

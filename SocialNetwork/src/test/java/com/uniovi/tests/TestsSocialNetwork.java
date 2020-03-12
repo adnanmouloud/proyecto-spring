@@ -261,8 +261,8 @@ public class TestsSocialNetwork {
 
 		PO_LoginView.fillForm(driver, "victorgon@gmail.es", "123456");
 
-		 PO_UserSearchView.goToUserListing(driver);
-		
+		PO_UserSearchView.goToUserListing(driver);
+
 		PO_View.checkElementWithId(driver, "listaUsuarios");
 
 		// Contamos el número de usuarios que hay en la primera página
@@ -276,8 +276,9 @@ public class TestsSocialNetwork {
 		List<WebElement> elementos2 = SeleniumUtils.EsperaCargaPagina(driver, "free", "//tbody/tr",
 				PO_View.getTimeout());
 		System.err.println(elementos2.size());
-		
-		// Como se crea un usuario en los tests anteriores, este sería el nuevo resultado esperado
+
+		// Como se crea un usuario en los tests anteriores, este sería el nuevo
+		// resultado esperado
 		assertTrue(elementos2.size() == 3);
 
 		driver.manage().deleteAllCookies();
@@ -314,8 +315,9 @@ public class TestsSocialNetwork {
 		// Contamos el número de usuarios que hay en la segunda página
 		List<WebElement> elementos2 = SeleniumUtils.EsperaCargaPagina(driver, "free", "//tbody/tr",
 				PO_View.getTimeout());
-		
-		// Como se crea un usuario en los tests anteriores, este sería el nuevo resultado esperado
+
+		// Como se crea un usuario en los tests anteriores, este sería el nuevo
+		// resultado esperado
 		assertTrue(elementos2.size() == 3);
 
 		driver.manage().deleteAllCookies();
@@ -543,6 +545,50 @@ public class TestsSocialNetwork {
 
 		// Comprobamos que el número de amigos es 1 (máximo por página)
 		assertTrue(PO_View.countListingElementsOnView(driver) == 1);
+
+		driver.manage().deleteAllCookies();
+	}
+
+	// PR21. Intentar acceder sin estar autenticado a la opción de listado de
+	// usuarios. Se deberá volver al
+	// formulario de login.
+	@Test
+	public void PR21() {
+		driver.manage().deleteAllCookies();
+
+		driver.navigate().to(URL + "/user/list");
+
+		PO_View.checkElementWithId(driver, "identifyYourselfLbl");
+
+		driver.manage().deleteAllCookies();
+	}
+
+	// PR22. Intentar acceder sin estar autenticado a la opción de listado de
+	// usuarios. Se deberá volver al
+	// formulario de login.
+	@Test
+	public void PR22() {
+		driver.manage().deleteAllCookies();
+
+		driver.navigate().to(URL + "/friendship/list");
+
+		PO_View.checkElementWithId(driver, "identifyYourselfLbl");
+
+		driver.manage().deleteAllCookies();
+	}
+
+	// PR23. Estando autenticado como usuario estándar intentar acceder a una opción
+	// disponible solo
+	// para usuarios administradores (Se puede añadir una opción cualquiera en el
+	// menú). Se deberá indicar un
+	// mensaje de acción prohibida.
+	@Test
+	public void PR23() {
+		driver.manage().deleteAllCookies();
+
+		driver.navigate().to(URL + "/friendship/list");
+
+		PO_View.checkElementWithId(driver, "identifyYourselfLbl");
 
 		driver.manage().deleteAllCookies();
 	}

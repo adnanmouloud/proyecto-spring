@@ -14,28 +14,27 @@
 				<li><a href="/">Home</a></li>
 
 				<!-- Menú de usuarios -->
-				<li id="users-menu" class="dropdown"
-					><a
+				<li id="users-menu" class="dropdown"><a
 					class="dropdown-toggle" data-toggle="dropdown" href="#">
 						Gestión de Usuarios <span class="caret"></span>
 				</a>
 					<ul class="dropdown-menu">
 						<li><a href="/user/list">Ver Usuarios</a></li>
+						<li sec:authorize="hasRole('ROLE_ADMIN')"><a
+							href="/user/manage">Administrar Usuarios</a></li>
 					</ul></li>
-					
-					<!-- Menú de invitaciones -->
-				<li id="invitations-menu" class="dropdown"
-					><a
+
+				<!-- Menú de invitaciones -->
+				<li id="invitations-menu" class="dropdown"><a
 					class="dropdown-toggle" data-toggle="dropdown" href="#">
 						Gestión de Invitaciones <span class="caret"></span>
 				</a>
 					<ul class="dropdown-menu">
 						<li><a href="/friendship/list">Ver Solicitudes</a></li>
 					</ul></li>
-					
-					<!-- Menú de amigos -->
-				<li id="friends-menu" class="dropdown"
-					><a
+
+				<!-- Menú de amigos -->
+				<li id="friends-menu" class="dropdown"><a
 					class="dropdown-toggle" data-toggle="dropdown" href="#">
 						Gestión de Amigos <span class="caret"></span>
 				</a>
@@ -63,16 +62,17 @@
 						</a></li>
 					</ul></li>
 
-				<li id="signup" sec:authorize="!isAuthenticated()"><a href="/signup"
-					th:text="#{signup.message}"> <span
+				<li id="signup" sec:authorize="!isAuthenticated()"><a
+					href="/signup" th:text="#{signup.message}"> <span
 						class="glyphicon glyphicon-user"></span> Registrate
 				</a></li>
-				<li id="login" sec:authorize="!isAuthenticated()"><a href="/login"
-					th:text="#{login.message}"> <span
+				<li id="login" sec:authorize="!isAuthenticated()"><a
+					href="/login" th:text="#{login.message}"> <span
 						class="glyphicon glyphicon-log-in"></span> Identifícate
 				</a></li>
-				<li id="logout" sec:authorize="isAuthenticated()"><a href="/logout"> <span
-						class="glyphicon glyphicon-log-out"></span> Desconectar
+				<li id="logout" sec:authorize="isAuthenticated()"><a
+					href="/logout"> <span class="glyphicon glyphicon-log-out"></span>
+						Desconectar
 				</a></li>
 			</ul>
 		</div>

@@ -5,36 +5,40 @@
 	<!-- Barra de Navegación superior -->
 	<nav th:replace="fragments/nav" />
 	<div class="container">
-		<h2 id="listaAmigos">Amigos</h2>
-		<p>Estos son los amigos que tienes actualmente:</p>
+		<h2 id="listaUsuarios">Usuarios</h2>
+		<p>Los usuarios que actualmente figuran en el sistema son los
+			siguientes:</p>
 		<button type="button" id="updateButton" class="btn btn-default">Actualizar</button>
 		<script>
 			$("#updateButton").click(function() {
-				$("#tableFriends").load('/friend/list/update');
+				$("#tableUsers").load('/user/manage/update');
 			});
 		</script>
 
 		<div class="table-responsive">
-			<table class="table table-hover" th:fragment="tableFriends"
-				id="tableFriends">
+			<table class="table table-hover" th:fragment="tableUsers"
+				id="tableUsers">
 				<thead>
 					<tr>
 
+						<th>ID</th>
 						<th>Nombre</th>
 						<th>Apellidos</th>
 						<th>Email</th>
+						<th>Rol</th>
 						<th class="col-md-1"></th>
 						<th class="col-md-1"></th>
 
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="friend : ${friendsList}" th:id="${'friend' + friend.id}">
+					<tr th:each="user : ${usersList}" th:id="${'user' + user.id}">
 
-						<td th:text="${friend.name}">Nombre del usuario</td>
-						<td th:text="${friend.lastName}">Apellidos del usuario</td>
-						<td th:text="${friend.email}">Email del usuario</td>
-
+						<td th:text="${user.id}">ID del usuario</td>
+						<td th:text="${user.name}">Nombre del usuario</td>
+						<td th:text="${user.lastName}">Apellidos del usuario</td>
+						<td th:text="${user.email}">Email del usuario</td>
+						<td th:text="${user.role}">Rol del usuario</td>
 						<td class="col-md-1"></td>
 						<td class="col-md-1"></td>
 					</tr>

@@ -49,7 +49,7 @@ public class UsersController {
 
 	@Autowired
 	private InvitationFriendshipService invitationFriendshipService;
-	
+
 	@Autowired
 	private FriendshipService friendshipService;
 
@@ -88,7 +88,8 @@ public class UsersController {
 		model.addAttribute("usersList", users.getContent());
 		model.addAttribute("page", users);
 
-		model.addAttribute("invitationsList", invitationFriendshipService.getUsersWhoReceivedFriendshipInvitationFromCurrentUser(currentlyUser));
+		model.addAttribute("invitationsList",
+				invitationFriendshipService.getUsersWhoReceivedFriendshipInvitationFromCurrentUser(currentlyUser));
 		model.addAttribute("friendsList", friendshipService.getFriendsOfCurrentUser(currentlyUser));
 
 		return "user/list";
@@ -174,7 +175,7 @@ public class UsersController {
 
 		if (activeUser.getRole().equals(rolesService.getRoles()[1]))
 			return "redirect:/user/list";
-		
+
 		return "home";
 	}
 
@@ -182,7 +183,26 @@ public class UsersController {
 	public String updateList(Model model, Pageable pageable) {
 		model.addAttribute("usersList", usersService.getUsers(pageable));
 		model.addAttribute("invitationsList",
-				invitationFriendshipService.getUsersWhoReceivedFriendshipInvitationFromCurrentUser((User) httpSession.getAttribute("currentlyUser")));
+				invitationFriendshipService.getUsersWhoReceivedFriendshipInvitationFromCurrentUser(
+						(User) httpSession.getAttribute("currentlyUser")));
+		model.addAttribute("friendsList",
+				friendshipService.getFriendsOfCurrentUser((User) httpSession.getAttribute("currentlyUser")));
 		return "user/list :: tableUsers";
+	}
+
+	@RequestMapping("/user/manage")
+	public String getListadoAdmin(Model model, Pageable pageable) {
+		Page<User> users = usersService.getUsers(pageable);
+
+		model.addAttribute("usersList", users.getContent());
+		model.addAttribute("page", users);
+
+		return "user/manage";
+	}
+
+	@RequestMapping("/user/manage/update")
+	public String updateListAdmin(Model model, Pageable pageable) {
+		model.addAttribute("usersList", usersService.getUsers(pageable));
+		return "user/manage :: tableUsers";
 	}
 }
