@@ -585,10 +585,16 @@ public class TestsSocialNetwork {
 	@Test
 	public void PR23() {
 		driver.manage().deleteAllCookies();
+		driver.navigate().to(URL);
+		
+		PO_View.clickOptionWithId(driver, "login", "identifyYourselfLbl");
 
-		driver.navigate().to(URL + "/friendship/list");
-
-		PO_View.checkElementWithId(driver, "identifyYourselfLbl");
+		PO_LoginView.fillForm(driver, "victorgon@gmail.es", "123456");
+		
+		// Accedemos mediante una URL, ya que la opción de menú no aparece si no eres admin
+		driver.navigate().to(URL + "/user/manage");
+		
+		PO_View.checkElementWithId(driver, "accessDenied");
 
 		driver.manage().deleteAllCookies();
 	}

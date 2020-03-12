@@ -192,6 +192,12 @@ public class UsersController {
 
 	@RequestMapping("/user/manage")
 	public String getListadoAdmin(Model model, Pageable pageable) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String email = auth.getName();
+		User activeUser = usersService.getUserByEmail(email);
+		if (!activeUser.getRole().equals(rolesService.getRoles()[1]))
+			return "forbidden";
+		
 		Page<User> users = usersService.getUsers(pageable);
 
 		model.addAttribute("usersList", users.getContent());
