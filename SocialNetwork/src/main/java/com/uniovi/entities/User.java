@@ -39,6 +39,9 @@ public class User {
 	@OneToMany(mappedBy ="friend2", cascade =  CascadeType.ALL, fetch = FetchType.EAGER)
 	private Set<Friendship> userIsFriendOf;
 	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private Set<Post> posts;
+	
 	public User(String email, String name, String lastName) {
 		super();
 		this.email = email;
@@ -120,5 +123,37 @@ public class User {
 	
 	public String toString() {
 		return getFullName();
+	}
+
+	public Set<Friendship> getUsersFriends() {
+		return usersFriends;
+	}
+
+	public void setUsersFriends(Set<Friendship> usersFriends) {
+		this.usersFriends = usersFriends;
+	}
+
+	public Set<Friendship> getUserIsFriendOf() {
+		return userIsFriendOf;
+	}
+
+	public void setUserIsFriendOf(Set<Friendship> userIsFriendOf) {
+		this.userIsFriendOf = userIsFriendOf;
+	}
+
+	public Set<Post> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(Set<Post> posts) {
+		this.posts = posts;
+	}
+
+	public void setListaSolicitudesEnviadas(Set<InvitationFriendship> listaSolicitudesEnviadas) {
+		this.listaSolicitudesEnviadas = listaSolicitudesEnviadas;
+	}
+
+	public void setListaSolicitudesRecibidas(Set<InvitationFriendship> listaSolicitudesRecibidas) {
+		this.listaSolicitudesRecibidas = listaSolicitudesRecibidas;
 	}
 }
