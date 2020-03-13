@@ -23,7 +23,9 @@ import com.uniovi.entities.User;
 import com.uniovi.repositories.UsersRepository;
 import com.uniovi.services.UsersService;
 import com.uniovi.tests.pageobjects.PO_FriendshipView;
+import com.uniovi.tests.pageobjects.PO_HomeView;
 import com.uniovi.tests.pageobjects.PO_LoginView;
+import com.uniovi.tests.pageobjects.PO_NavView;
 import com.uniovi.tests.pageobjects.PO_Properties;
 import com.uniovi.tests.pageobjects.PO_RegisterView;
 import com.uniovi.tests.pageobjects.PO_UserSearchView;
@@ -251,8 +253,8 @@ public class TestsSocialNetwork {
 
 		PO_LoginView.fillForm(driver, "victorgon@gmail.es", "123456");
 
-		 PO_UserSearchView.goToUserListing(driver);
-		
+		PO_UserSearchView.goToUserListing(driver);
+
 		PO_View.checkElementWithId(driver, "listaUsuarios");
 
 		// Contamos el número de usuarios que hay en la primera página
@@ -521,6 +523,104 @@ public class TestsSocialNetwork {
 
 		// Comprobamos que el número de amigos es 1 (máximo por página)
 		assertTrue(PO_View.countListingElementsOnView(driver) == 1);
+
+		driver.manage().deleteAllCookies();
+	}
+
+	// PR20. Visualizar al menos cuatro páginas en Español/Inglés/Español
+	// (comprobando que algunas
+	// de las etiquetas cambian al idioma correspondiente). Ejemplo, Página
+	// principal/Opciones Principales de
+	// Usuario/Listado de Usuarios.
+	@Test
+	public void PR20() {
+		driver.navigate().to(URL);
+
+		PO_View.clickOptionWithId(driver, "login", "identifyYourselfLbl");
+
+		PO_LoginView.fillForm(driver, "victorgon@gmail.es", "123456");
+
+		// ******************** HOME ********************
+		// Comprobación que sale el texto de bienvenida en Español e inglés
+		List<WebElement> elementos1 = PO_View.checkKey(driver, "welcome.message", PO_Properties.getSPANISH());
+		assertTrue(elementos1.size() == 1);
+		PO_NavView.changeIdiom(driver, "English");
+		List<WebElement> elementos2 = PO_View.checkKey(driver, "welcome.message", PO_Properties.getENGLISH());
+		assertTrue(elementos2.size() == 1);
+
+		// Comprobación que sale el texto de "Usuario Autenticado como:" en Español e
+		// Inglés
+		PO_NavView.changeIdiom(driver, "Spanish");
+		List<WebElement> elementos3 = PO_View.checkKey(driver, "user.authenticated", PO_Properties.getSPANISH());
+		assertTrue(elementos3.size() == 1);
+		PO_NavView.changeIdiom(driver, "English");
+		List<WebElement> elementos4 = PO_View.checkKey(driver, "user.authenticated", PO_Properties.getENGLISH());
+		assertTrue(elementos4.size() == 1);
+
+		// Comprobación que sale el texto de "Descripción" en Español e Inglés
+		PO_NavView.changeIdiom(driver, "Spanish");
+		List<WebElement> elementos5 = PO_View.checkKey(driver, "details.description", PO_Properties.getSPANISH());
+		assertTrue(elementos5.size() == 1);
+		PO_NavView.changeIdiom(driver, "English");
+		List<WebElement> elementos6 = PO_View.checkKey(driver, "details.description", PO_Properties.getENGLISH());
+		assertTrue(elementos6.size() == 1);
+
+		// ******************** USER/LIST ********************
+		// Comprobación que sale el texto de "Nombre:" en Español e Inglés
+		PO_NavView.changeIdiom(driver, "Spanish");
+		PO_UserSearchView.goToUserListing(driver);
+		List<WebElement> elementos7 = PO_View.checkKey(driver, "name", PO_Properties.getSPANISH());
+		assertTrue(elementos7.size() == 1);
+		PO_NavView.changeIdiom(driver, "English");
+		List<WebElement> elementos8 = PO_View.checkKey(driver, "name", PO_Properties.getENGLISH());
+		assertTrue(elementos8.size() == 1);
+
+		// Comprobación que sale el botón de "Buscar" en Español e Inglés
+		PO_NavView.changeIdiom(driver, "Spanish");
+		List<WebElement> elementos9 = PO_View.checkKey(driver, "search", PO_Properties.getSPANISH());
+		assertTrue(elementos9.size() == 1);
+		PO_NavView.changeIdiom(driver, "English");
+		List<WebElement> elementos10 = PO_View.checkKey(driver, "search", PO_Properties.getENGLISH());
+		assertTrue(elementos10.size() == 1);
+
+		// Comprobación que sale el botón de "Agregar amigo" en Español e Inglés
+		PO_NavView.changeIdiom(driver, "Spanish");
+		List<WebElement> elementos11 = PO_View.checkKey(driver, "users.list.requestFriendship",
+				PO_Properties.getSPANISH());
+		assertTrue(elementos11.size() == 5);
+		PO_NavView.changeIdiom(driver, "English");
+		List<WebElement> elementos12 = PO_View.checkKey(driver, "users.list.requestFriendship",
+				PO_Properties.getENGLISH());
+		assertTrue(elementos12.size() == 5);
+
+		// ******************** FRIENDSHIP/LIST ********************
+		// Comprobación que sale el texto de "Nombre:" en Español e Inglés
+		PO_NavView.changeIdiom(driver, "Spanish");
+		List<WebElement> elementos15 = PO_View.checkKey(driver, "name", PO_Properties.getSPANISH());
+		assertTrue(elementos15.size() == 1);
+		PO_NavView.changeIdiom(driver, "English");
+		List<WebElement> elementos16 = PO_View.checkKey(driver, "name", PO_Properties.getENGLISH());
+		assertTrue(elementos16.size() == 1);
+
+		// ******************** FRIEND/LIST ********************
+		// Comprobación que sale el texto de "Nombre:" en Español e Inglés
+		PO_NavView.changeIdiom(driver, "Spanish");
+		PO_FriendshipView.goToFriendsListing(driver);
+		List<WebElement> elementos17 = PO_View.checkKey(driver, "name", PO_Properties.getSPANISH());
+		assertTrue(elementos17.size() == 1);
+		PO_NavView.changeIdiom(driver, "English");
+		List<WebElement> elementos18 = PO_View.checkKey(driver, "name", PO_Properties.getENGLISH());
+		assertTrue(elementos18.size() == 1);
+
+		// Comprobación que sale el texto de "Email" en Español e Inglés
+		PO_NavView.changeIdiom(driver, "Spanish");
+		List<WebElement> elementos19 = PO_View.checkKey(driver, "email", PO_Properties.getSPANISH());
+		assertTrue(elementos19.size() == 1);
+		PO_NavView.changeIdiom(driver, "English");
+		List<WebElement> elementos20 = PO_View.checkKey(driver, "email", PO_Properties.getENGLISH());
+		assertTrue(elementos20.size() == 1);
+
+
 
 		driver.manage().deleteAllCookies();
 	}
