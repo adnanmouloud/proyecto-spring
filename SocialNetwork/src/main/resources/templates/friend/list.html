@@ -6,11 +6,8 @@
 	<nav th:replace="fragments/nav" />
 	<div class="container">
 		<h2 id="listaAmigos" th:text="#{users.list.requestFriendship.alreadyFriends}">Amigos</h2>
-		<form class="navbar-form" action="/friend/list">
-			<button id="buscar" type="submit" class="btn btn-default" th:text="#{search}">Buscar</button>
-		</form>
-		<p th:text="#{friends.now}"></p>
-		<button type="button" id="updateButton" class="btn btn-default" th:text="#{update}">Actualizar</button>
+		<p th:text="#{friends.now}">Estos son los amigos que tienes actualmente:</p>
+		<button type="button" id="updateButton" class="btn btn-default">Actualizar</button>
 		<script>
 			$("#updateButton").click(function() {
 				$("#tableFriends").load('/friend/list/update');

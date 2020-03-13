@@ -20,9 +20,12 @@
 						 <span class="caret"></span>
 				</a>
 					<ul class="dropdown-menu">
-						<li><a href="/user/list" th:text="#{user.show}"></a></li>
+
+						<li><a href="/user/list" th:text="#{user.show}">Ver Usuarios</a></li>
+						<li sec:authorize="hasRole('ROLE_ADMIN')"><a
+							href="/user/manage">Administrar Usuarios</a></li>
 					</ul></li>
-					
+			
 					<!-- Menú de invitaciones -->
 				<li id="invitations-menu" class="dropdown"
 					><a
@@ -63,16 +66,18 @@
 						</a></li>
 					</ul></li>
 
-				<li id="signup" sec:authorize="!isAuthenticated()"><a href="/signup"
-					th:text="#{signup.message}"> <span
+				<li id="signup" sec:authorize="!isAuthenticated()"><a
+					href="/signup" th:text="#{signup.message}"> <span
 						class="glyphicon glyphicon-user"></span> Registrate
 				</a></li>
-				<li id="login" sec:authorize="!isAuthenticated()"><a href="/login"
-					th:text="#{login.message}"> <span
+				<li id="login" sec:authorize="!isAuthenticated()"><a
+					href="/login" th:text="#{login.message}"> <span
 						class="glyphicon glyphicon-log-in"></span> Identifícate
 				</a></li>
+				
 				<li id="logout" sec:authorize="isAuthenticated()"><a href="/logout"> <span
 						class="glyphicon glyphicon-log-out" th:text="#{logout.message}"></span>
+
 				</a></li>
 			</ul>
 		</div>

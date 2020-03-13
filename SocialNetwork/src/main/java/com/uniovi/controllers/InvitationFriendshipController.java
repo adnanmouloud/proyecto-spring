@@ -21,64 +21,66 @@ import com.uniovi.services.UsersService;
 
 @Controller
 public class InvitationFriendshipController {
-	
+
 	@Autowired
 	private UsersService usersService;
-	
+
 	@Autowired
 	private InvitationFriendshipService invitationFriendshipService;
-	
+
 	@Autowired
 	private FriendshipService friendshipService;
-	
-	
-	@RequestMapping(value="/friendship/send", method = RequestMethod.POST)
-	public String sendRequest(@RequestParam Long Idreceptor , Model model, Principal principal )
-	{
-		User emisor = usersService.getUserByEmail( principal.getName() );
+
+	@RequestMapping(value = "/friendship/send", method = RequestMethod.POST)
+	public String sendRequest(@RequestParam Long Idreceptor, Model model, Principal principal) {
+		User emisor = usersService.getUserByEmail(principal.getName());
 		invitationFriendshipService.sendRequest(emisor, Idreceptor);
-		
+
 		return "redirect:/user/list";
 	}
-	
-	@RequestMapping(value="/friendship/list")
-	public String getRequestList(Model model, Principal principal, Pageable pageable)
-	{
-		User user = usersService.getUserByEmail( principal.getName() );
-		Page<InvitationFriendship> invitations = new PageImpl<InvitationFriendship>(new LinkedList<InvitationFriendship>());
-		
+
+	@RequestMapping(value = "/friendship/list")
+	public String getRequestList(Model model, Principal principal, Pageable pageable) {
+		User user = usersService.getUserByEmail(principal.getName());
+		Page<InvitationFriendship> invitations = new PageImpl<InvitationFriendship>(
+				new LinkedList<InvitationFriendship>());
+
 		invitations = invitationFriendshipService.getFriendRequests(pageable, user);
-		
-		model.addAttribute("invitationsList", invitations.getContent() );
+
+		model.addAttribute("invitationsList", invitations.getContent());
 		model.addAttribute("page", invitations);
-		
+
 		System.err.println(user);
 		System.err.println(invitations.getContent());
-		
+
 		return "friendship/list";
 	}
 
-	@RequestMapping("/mark/list/update")
+	@RequestMapping("/friendship/list/update")
 	public String updateList(Model model, Pageable pageable, Principal principal) {
-		User user = usersService.getUserByEmail( principal.getName() );
+		User user = usersService.getUserByEmail(principal.getName());
 
 		Page<InvitationFriendship> ifs = invitationFriendshipService.getFriendRequests(pageable, user);
 		model.addAttribute("invitationsList", ifs.getContent());
 		return "mark/list :: tableMarks";
 	}
-	
-	@RequestMapping(value="/friendship/accept", method = RequestMethod.POST)
-	public String acceptRequest(@RequestParam Long idNewFriend, @RequestParam Long idInvitation, Model model, Principal principal )
-	{
+
+	@RequestMapping(value = "/friendship/accept", method = RequestMethod.POST)
+	public String acceptRequest(@RequestParam Long idNewFriend, @RequestParam Long idInvitation, Model model,
+			Principal principal) {
 		invitationFriendshipService.getInvitationById(idInvitation).setAceptada(true);
-		
-		User currentUser = usersService.getUserByEmail( principal.getName() );
-		
-		invitationFriendshipService.setInvitationAcceptedIfExiststs(currentUser, idNewFriend);
-		
-		friendshipService.createFriendship(currentUser, idNewFriend);
-		friendshipService.createFriendship(idNewFriend, currentUser);
-		
+
+		User currentUser = usersService.getUserByEmail(principal.getName());
+
+		// Solo quién ha recibido esta petición en concreto la puede aceptar
+		if (invitationFriendshipService.getInvitationById(idInvitation).getReceptor().getEmail()
+				.equals(principal.getName())) {
+			invitationFriendshipService.setInvitationAcceptedIfExiststs(currentUser, idNewFriend);
+
+			friendshipService.createFriendship(currentUser, idNewFriend);
+			friendshipService.createFriendship(idNewFriend, currentUser);
+		}
+
 		return "redirect:/friendship/list";
 	}
 }
