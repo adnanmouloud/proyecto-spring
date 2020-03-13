@@ -551,7 +551,6 @@ public class TestsSocialNetwork {
 		driver.manage().deleteAllCookies();
 	}
 
-
 	// PR20. Visualizar al menos cuatro páginas en Español/Inglés/Español
 	// (comprobando que algunas
 	// de las etiquetas cambian al idioma correspondiente). Ejemplo, Página
@@ -563,7 +562,7 @@ public class TestsSocialNetwork {
 
 		PO_View.clickOptionWithId(driver, "login", "identifyYourselfLbl");
 
-		PO_LoginView.fillForm(driver, "victorgon@gmail.es", "123456");
+		PO_LoginView.fillForm(driver, "kiko@outlook.es", "123456");
 
 		// ******************** HOME ********************
 		// Comprobación que sale el texto de bienvenida en Español e inglés
@@ -646,7 +645,6 @@ public class TestsSocialNetwork {
 		assertTrue(elementos20.size() == 1);
 	}
 
-
 	// PR21. Intentar acceder sin estar autenticado a la opción de listado de
 	// usuarios. Se deberá volver al
 	// formulario de login.
@@ -684,16 +682,47 @@ public class TestsSocialNetwork {
 	public void PR23() {
 		driver.manage().deleteAllCookies();
 		driver.navigate().to(URL);
-		
+
 		PO_View.clickOptionWithId(driver, "login", "identifyYourselfLbl");
 
 		PO_LoginView.fillForm(driver, "victorgon@gmail.es", "123456");
-		
-		// Accedemos mediante una URL, ya que la opción de menú no aparece si no eres admin
+
+		// Accedemos mediante una URL, ya que la opción de menú no aparece si no eres
+		// admin
 		driver.navigate().to(URL + "/user/manage");
-		
+
 		PO_View.checkElementWithId(driver, "accessDenied");
 
+		driver.manage().deleteAllCookies();
+	}
+
+	// PR31. Estando autenticado como usuario estándar intentar acceder a una opción
+	// disponible solo
+	// para usuarios administradores (Se puede añadir una opción cualquiera en el
+	// menú). Se deberá indicar un
+	// mensaje de acción prohibida.
+	@Test
+	public void PR31() {
+		driver.manage().deleteAllCookies();
+		driver.navigate().to(URL);
+
+		PO_View.clickOptionWithId(driver, "login", "identifyYourselfLbl");
+
+		PO_LoginView.fillForm(driver, "admin@email.com", "123456");
+
+		// Accedemos al menú de listado de usuarios que solo está accesible para el admin
+		List<WebElement> elementos = PO_View.checkElement(driver, "free", "//li[contains(@id,'users-menu')]/a");
+		elementos.get(0).click();
+		elementos = PO_View.checkElement(driver, "free", "//a[contains(@href, 'user/manage')]");
+		elementos.get(0).click();
+
+		PO_View.checkElementWithId(driver, "tableUsers");
+
+		assertTrue(PO_View.countListingElementsOnView(driver) == 5);
+
+		PO_View.clickOptionWithId(driver, "siguiente", "listaUsuarios");
+
+		assertTrue(PO_View.countListingElementsOnView(driver) == 4);
 
 		driver.manage().deleteAllCookies();
 	}
