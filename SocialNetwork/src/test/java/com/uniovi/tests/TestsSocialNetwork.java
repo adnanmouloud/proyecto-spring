@@ -336,12 +336,11 @@ public class TestsSocialNetwork {
 		PO_View.checkElementWithId(driver, "listaUsuarios");
 
 		// metemos una cadena que no exista en el campo de búsqueda
-		PO_UserSearchView.fillField(driver, "yyyyyxq");
+		String textoABuscar = "yyyyyxq";
+		PO_UserSearchView.fillField(driver, textoABuscar);
 
-		// Comprobar que la tabla está vacía
-		List<WebElement> elementos = SeleniumUtils.EsperaCargaPagina(driver, "free", "//tbody/tr",
-				PO_View.getTimeout());
-		assertTrue(elementos.size() == 0);
+		SeleniumUtils.EsperaCargaPaginaNoTexto(driver,textoABuscar, PO_View.getTimeout());
+		
 
 		driver.manage().deleteAllCookies();
 	}
