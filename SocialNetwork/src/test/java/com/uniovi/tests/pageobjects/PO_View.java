@@ -131,4 +131,23 @@ public class PO_View {
 		
 		return elements.size();
 	}
+
+	/**
+	 * Comprueba que un texto pasado como parámetro esta correctamente internacionalizado en dos 
+	 * idiomas (español e inglés)
+	 * @param driver
+	 * @param string texto a comprobar
+	 * @param numElementos que debería encontrar (para comprobar que encuentra el número de elementos correcto)
+	 */
+	public static void checkTagsLanguages(WebDriver driver, String texto, int numElementosEsperado) {
+		
+		PO_NavView.changeIdiom(driver, "Spanish");
+		List<WebElement> elementos = PO_View.checkKey(driver, texto, PO_Properties.getSPANISH());
+		assertTrue(elementos.size() == numElementosEsperado);
+		
+		PO_NavView.changeIdiom(driver, "English");
+		List<WebElement> elementos2 = PO_View.checkKey(driver, texto, PO_Properties.getENGLISH());
+		assertTrue(elementos2.size() == numElementosEsperado);
+		
+	}
 }
