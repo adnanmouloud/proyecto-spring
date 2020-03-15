@@ -20,6 +20,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import com.uniovi.tests.pageobjects.PO_FriendshipView;
 import com.uniovi.tests.pageobjects.PO_LoginView;
 import com.uniovi.tests.pageobjects.PO_NavView;
+import com.uniovi.tests.pageobjects.PO_PostView;
 import com.uniovi.tests.pageobjects.PO_Properties;
 import com.uniovi.tests.pageobjects.PO_RegisterView;
 import com.uniovi.tests.pageobjects.PO_UserSearchView;
@@ -339,8 +340,7 @@ public class TestsSocialNetwork {
 		String textoABuscar = "yyyyyxq";
 		PO_UserSearchView.fillField(driver, textoABuscar);
 
-		SeleniumUtils.EsperaCargaPaginaNoTexto(driver,textoABuscar, PO_View.getTimeout());
-		
+		SeleniumUtils.EsperaCargaPaginaNoTexto(driver, textoABuscar, PO_View.getTimeout());
 
 		driver.manage().deleteAllCookies();
 	}
@@ -568,37 +568,29 @@ public class TestsSocialNetwork {
 		// Comprobación que sale el texto de "Descripción" en Español e Inglés
 		PO_View.checkTagsLanguages(driver, "details.description", 1);
 
-
 		// ******************** USER/LIST ********************
 		// Comprobación que sale el texto de "Nombre:" en Español e Inglés
 		PO_UserSearchView.goToUserListing(driver);
 		PO_View.checkTagsLanguages(driver, "name", 1);
-		
 
 		// Comprobación que sale el botón de "Buscar" en Español e Inglés
 		PO_View.checkTagsLanguages(driver, "search", 1);
 
-
 		// Comprobación que sale el botón de "Agregar amigo" en Español e Inglés
 		PO_View.checkTagsLanguages(driver, "users.list.requestFriendship", 5);
-		
 
 		// ******************** FRIENDSHIP/LIST ********************
 		// Comprobación que sale el texto de "Nombre:" en Español e Inglés
 		PO_FriendshipView.goToInvitationsListing(driver);
 		PO_View.checkTagsLanguages(driver, "name", 1);
-		
-
 
 		// ******************** FRIEND/LIST ********************
 		// Comprobación que sale el texto de "Nombre:" en Español e Inglés
 		PO_FriendshipView.goToFriendsListing(driver);
 		PO_View.checkTagsLanguages(driver, "name", 1);
-		
 
 		// Comprobación que sale el texto de "Email" en Español e Inglés
 		PO_View.checkTagsLanguages(driver, "email", 1);
-		
 
 		driver.manage().deleteAllCookies();
 	}
@@ -654,6 +646,26 @@ public class TestsSocialNetwork {
 		driver.manage().deleteAllCookies();
 	}
 
+	// PR23. Mostrar el listado de publicaciones de un usuario y
+	// comprobar que se muestran todas las que
+	// existen para dicho usuario.
+	@Test
+	public void PR26() {
+
+		driver.navigate().to(URL);
+
+		PO_View.clickOptionWithId(driver, "login", "identifyYourselfLbl");
+
+		PO_LoginView.fillForm(driver, "victorgon@gmail.es", "123456");
+
+		PO_PostView.goToPostListing(driver);
+
+		// Comprobamos que el número de publicaciones es 2
+		assertTrue(PO_View.countListingElementsOnView(driver) == 2);
+
+		driver.manage().deleteAllCookies();
+	}
+
 	// PR31. Estando autenticado como usuario estándar intentar acceder a una opción
 	// disponible solo
 	// para usuarios administradores (Se puede añadir una opción cualquiera en el
@@ -668,7 +680,8 @@ public class TestsSocialNetwork {
 
 		PO_LoginView.fillForm(driver, "admin@email.com", "123456");
 
-		// Accedemos al menú de listado de usuarios que solo está accesible para el admin
+		// Accedemos al menú de listado de usuarios que solo está accesible para el
+		// admin
 		List<WebElement> elementos = PO_View.checkElement(driver, "free", "//li[contains(@id,'users-menu')]/a");
 		elementos.get(0).click();
 		elementos = PO_View.checkElement(driver, "free", "//a[contains(@href, 'user/manage')]");

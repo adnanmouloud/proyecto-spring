@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.uniovi.entities.Friendship;
+import com.uniovi.entities.Post;
 import com.uniovi.entities.User;
 
 @Service
@@ -18,6 +19,10 @@ public class InsertSampleDataService {
 	
 	@Autowired
 	private FriendshipService friendshipService;
+	
+	@Autowired
+	private PostsService postsService;
+	
 	
 	@PostConstruct
 	public void init() {
@@ -102,5 +107,12 @@ public class InsertSampleDataService {
 		
 		friendshipService.addFriendship(fr69);
 		friendshipService.addFriendship(fr96);
+		
+		//Para pruebas del opcional 14
+		Post post1 = new Post("Coronavirus", "Sálvese quien pueda", user2);
+		Post post2 = new Post("Papito", "keloke", user2);
+		
+		postsService.addPost(post1);
+		postsService.addPost(post2);
 	}
 }
