@@ -22,7 +22,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="post : ${postsList}" th:id="${'post' + post.id}">
+					<tr th:each="post : ${postsList}" th:id="${'userPost' + post.id}">
 
 						<td th:text="${post.title}"></td>
 						<td th:text="${post.date}"></td>

@@ -17,7 +17,7 @@
 				id="tablePosts">
 				<tbody>
 					<table class="table" th:each="post : ${postsList}"
-						th:id="${'post' + post.id}">
+						th:id="${'userPost' + post.id}">
 						<tr class="p-3 mb-2 bg-dark text-white">
 							<td th:text="${post.title}"></td>
 							<td th:text="${post.date}"></td>

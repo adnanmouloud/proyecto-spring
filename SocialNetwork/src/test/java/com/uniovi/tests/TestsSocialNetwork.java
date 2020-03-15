@@ -646,12 +646,56 @@ public class TestsSocialNetwork {
 		driver.manage().deleteAllCookies();
 	}
 
-	// PR23. Mostrar el listado de publicaciones de un usuario y
+	// PR24. Ir al formulario crear publicaciones, rellenarla con datos válidos y
+	// pulsar el botón Submit.
+	// Comprobar que la publicación sale en el listado de publicaciones de dicho
+	// usuario.
+	@Test
+	public void PR24() {
+		driver.manage().deleteAllCookies();
+		driver.navigate().to(URL);
+
+		PO_View.clickOptionWithId(driver, "login", "identifyYourselfLbl");
+
+		PO_LoginView.fillForm(driver, "adnan@gmail.es", "123456");
+
+		PO_PostView.goToNewPost(driver);
+
+		PO_PostView.fillForm(driver, "Publicación de prueba", "Esto va a salir bien a la primera");
+
+		PO_View.checkElement(driver, "text", "Publicación de prueba");
+
+		driver.manage().deleteAllCookies();
+	}
+
+	// PR25. Ir al formulario de crear publicaciones, rellenarla con datos inválidos
+	// (campo título vacío) y
+	// pulsar el botón Submit. Comprobar que se muestra el mensaje de campo
+	// obligatorio.
+	@Test
+	public void PR25() {
+		driver.manage().deleteAllCookies();
+		driver.navigate().to(URL);
+
+		PO_PostView.clickOptionWithId(driver, "login", "identifyYourselfLbl");
+
+		PO_LoginView.fillForm(driver, "adnan@gmail.es", "123456");
+
+		PO_PostView.goToNewPost(driver);
+
+		PO_PostView.fillForm(driver, "", "Y esto");
+
+		PO_PostView.checkKey(driver, "Error.empty", PO_Properties.getSPANISH());
+
+		driver.manage().deleteAllCookies();
+	}
+
+	// PR26. Mostrar el listado de publicaciones de un usuario y
 	// comprobar que se muestran todas las que
 	// existen para dicho usuario.
 	@Test
 	public void PR26() {
-
+		driver.manage().deleteAllCookies();
 		driver.navigate().to(URL);
 
 		PO_View.clickOptionWithId(driver, "login", "identifyYourselfLbl");
@@ -662,6 +706,50 @@ public class TestsSocialNetwork {
 
 		// Comprobamos que el número de publicaciones es 2
 		assertTrue(PO_View.countListingElementsOnView(driver) == 2);
+
+		driver.manage().deleteAllCookies();
+	}
+
+	// PR27. Mostrar el listado de publicaciones de un usuario amigo y comprobar que
+	// se muestran todas
+	// las que existen para dicho usuario.
+	@Test
+	public void PR27() {
+		driver.manage().deleteAllCookies();
+		driver.navigate().to(URL);
+
+		PO_View.clickOptionWithId(driver, "login", "identifyYourselfLbl");
+
+		PO_LoginView.fillForm(driver, "admin@email.com", "123456");
+
+		PO_FriendshipView.goToFriendsListing(driver);
+
+		PO_FriendshipView.clickOptionWithIdNoCheck(driver, "friendPosts2");
+
+		// Comprobamos que el número de publicaciones es 2
+		assertTrue(PO_PostView.countPostNumber(driver) == 2);
+
+		driver.manage().deleteAllCookies();
+	}
+
+	// PR28. Utilizando un acceso vía URL u otra alternativa, tratar de listar las
+	// publicaciones de un
+	// usuario que no sea amigo del usuario identificado en sesión. Comprobar que el
+	// sistema da un error de
+	// autorización
+	@Test
+	public void PR28() {
+		driver.manage().deleteAllCookies();
+		driver.navigate().to(URL);
+
+		PO_View.clickOptionWithId(driver, "login", "identifyYourselfLbl");
+
+		PO_LoginView.fillForm(driver, "maria@outlook.es", "123456");
+
+		// Intentamos acceder al listado de posts del usuario 2 mediante la URL
+		driver.navigate().to(URL + "/post/listFriend/2");
+
+		PO_View.checkElementWithId(driver, "accessDenied");
 
 		driver.manage().deleteAllCookies();
 	}

@@ -33,7 +33,8 @@
 					<tr th:each="friend : ${friendsList}"
 						th:id="${'friend' + friend.id}">
 
-						<td><a th:href="${'/post/listFriend/' + friend.id}"
+						<td><a th:id="${'friendPosts' + friend.id}"
+							th:href="${'/post/listFriend/' + friend.id}"
 							th:text="${friend.fullName}">Nombre completo del usuario</a></td>
 						<td th:text="${friend.email}">Email del usuario</td>
 
