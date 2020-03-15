@@ -63,7 +63,6 @@ public class UsersService {
 		}
 
 		return usersUpdate;
-
 	}
 
 	public User getUser(Long id) {
@@ -89,34 +88,5 @@ public class UsersService {
 		users = usersRepository.searchUsersByNameOrSurnameorEmail(pageable, searchText);
 
 		return users;
-	}
-
-	/**
-	 * 
-	 * @param currentlyUser
-	 * @param content
-	 * @return usuarios que han recibido una solicitud del usuario en sesión
-	 */
-	public Set<User> getUsersReceivedFriendshipFromCurrentlyUser(User currentlyUser, List<User> content) {
-
-		Set<User> usersWhoCouldReceiveARequest = getUsersWhoCouldReceiveARequestByActiveUser(currentlyUser);
-		Set<User> requestedUsersFromCurrentlyUser = new HashSet<User>();
-
-		for (User u : usersWhoCouldReceiveARequest) {
-			if (content.contains(u)) {
-				requestedUsersFromCurrentlyUser.add(u);
-			}
-
-		}
-		return requestedUsersFromCurrentlyUser;
-	}
-
-	private Set<User> getUsersWhoCouldReceiveARequestByActiveUser(User currentlyUser) {
-		Set<User> listaUsuarios = new HashSet<User>();
-
-		for (InvitationFriendship ifs : currentlyUser.getListaSolicitudesEnviadas()) {
-			listaUsuarios.add(ifs.getReceptor());
-		}
-		return listaUsuarios;
 	}
 }

@@ -66,25 +66,6 @@ public class UsersController {
 
 		User currentlyUser = (User) httpSession.getAttribute("currentlyUser");
 
-		// usuarios que me han enviado una solicitud de amistad
-		Set<User> usersReceivedRequestFriendship = invitationFriendshipService.getUserSendedRequest(currentlyUser,
-				users.getContent());
-
-		// usuarios a los que he enviado una solicitud de amistad
-		Set<User> usersRequestedFriendship = usersService.getUsersReceivedFriendshipFromCurrentlyUser(currentlyUser,
-				users.getContent());
-
-		// amigos
-		// Set<User> friendsInPage =
-		// invitationFriendshipService.getFriends(currentlyUser, users.getContent()) ;
-
-		Set<User> todasPendientes = new HashSet<User>();
-
-		usersReceivedRequestFriendship.forEach(todasPendientes::add);
-		usersRequestedFriendship.forEach(todasPendientes::add);
-
-		// model.addAttribute("friendList", friendsInPage);
-		model.addAttribute("pendientes", todasPendientes);
 		model.addAttribute("usersList", users.getContent());
 		model.addAttribute("page", users);
 
@@ -94,52 +75,6 @@ public class UsersController {
 
 		return "user/list";
 
-	}
-
-	@RequestMapping("/user/add")
-	public String getUser(Model model) {
-		model.addAttribute("rolesList", rolesService.getRoles());
-		// model.addAttribute("usersList", usersService.getUsers());
-		return "user/add";
-	}
-
-	@RequestMapping(value = "/user/add", method = RequestMethod.POST)
-	public String setUser(@ModelAttribute User user) {
-		usersService.addUser(user);
-		return "redirect:/user/list";
-	}
-
-	@RequestMapping("/user/details/{id}")
-	public String getDetail(Model model, @PathVariable Long id) {
-		model.addAttribute("user", usersService.getUser(id));
-		return "user/details";
-	}
-
-	@RequestMapping("/user/delete/{id}")
-	public String delete(@PathVariable Long id) {
-		usersService.deleteUser(id);
-		return "redirect:/user/list";
-	}
-
-	@RequestMapping(value = "/user/edit/{id}")
-	public String getEdit(Model model, @PathVariable Long id) {
-		User user = usersService.getUser(id);
-		model.addAttribute("user", user);
-		return "user/edit";
-	}
-
-	@RequestMapping(value = "/user/edit/{id}", method = RequestMethod.POST)
-	public String setEdit(Model model, @PathVariable Long id, @ModelAttribute User user) {
-//		user.setId(id);
-//		usersService.addUser(user);
-//		return "redirect:/user/details/" + id;
-
-		User antiguo = usersService.getUser(id);
-		// antiguo.setDni(user.dni);
-		antiguo.setName(user.getName());
-		antiguo.setLastName(user.getLastName());
-		usersService.addUser(antiguo);
-		return "redirect:/user/details/" + id;
 	}
 
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
@@ -197,7 +132,7 @@ public class UsersController {
 		User activeUser = usersService.getUserByEmail(email);
 		if (!activeUser.getRole().equals(rolesService.getRoles()[1]))
 			return "forbidden";
-		
+
 		Page<User> users = usersService.getUsers(pageable);
 
 		model.addAttribute("usersList", users.getContent());

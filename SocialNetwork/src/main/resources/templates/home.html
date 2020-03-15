@@ -10,32 +10,6 @@
  				th:inline="text"> </span>
 		<p th:text="#{private.web}">
 		</p>
-		<p th:text="#{user.notes}"></p>
-		<div class="table-responsive">
-			<table class="table table-hover" th:fragment="tableMarks"
-				id="tableMarks">
-				<thead>
-					<tr>
-						<th th:text="#{id}" class="col-md-1"></th>
-						<th th:text="#{details.description}"></th>
-						<th th:text="#{punctuation}"></th>
-						<th class="col-md-1"></th>
-						<th class="col-md-1"></th>
-						<th class="col-md-1"></th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="mark : ${markList}"  >
-						<td th:text="${mark.id}">1</td>
-						<td th:text="${mark.description}">Ejercicio 1</td>
-						<td th:text="${mark.score}">10</td>
-						<td><a th:href="${'/mark/details/' + mark.id}">detalles</a></td>
-						<td><a th:href="${'/mark/edit/' + mark.id}" sec:authorize="hasRole('ROLE_PROFESSOR')">modificar</a></td>
-						<td><a th:href="${'/mark/delete/' + mark.id}" sec:authorize="hasRole('ROLE_PROFESSOR')">eliminar</a></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
 
 	</div>
 	<footer th:replace="fragments/footer" />

@@ -19,25 +19,20 @@ import com.uniovi.repositories.UsersRepository;
 
 @Service
 public class InvitationFriendshipService {
-	
+
 	@Autowired
 	private UsersRepository usersRepository;
-	
+
 	@Autowired
 	private InvitationFriendshipRepository invitationFriendshipRepository;
-	
 
 	public void sendRequest(User emisor, Long idReceptor) {
-		
+
 		User receptor = usersRepository.findById(idReceptor).get();
 		InvitationFriendship invitation = new InvitationFriendship(emisor, receptor);
-		
-		invitationFriendshipRepository.save(invitation);
-		
-		
-		
-	}
 
+		invitationFriendshipRepository.save(invitation);
+	}
 
 	public Page<InvitationFriendship> getFriendRequests(Pageable pageable, User user) {
 		return invitationFriendshipRepository.getFriendRequests(pageable, user);
@@ -50,31 +45,22 @@ public class InvitationFriendshipService {
 	 * @return usuarios que han enviado una solicitud al usuario en sesión
 	 */
 	public Set<User> getUserSendedRequest(User currentlyUser, List<User> content) {
-		List<User> usersReceivedRequestFrom = invitationFriendshipRepository.findPendingRequestsToCurrentlyUser(currentlyUser).stream()
-				.map(i -> i.getEmisor()).collect(Collectors.toList());
-		
+		List<User> usersReceivedRequestFrom = invitationFriendshipRepository
+				.findPendingRequestsToCurrentlyUser(currentlyUser).stream().map(i -> i.getEmisor())
+				.collect(Collectors.toList());
+
 		Set<User> listUsers = new HashSet<User>();
-		
+
 		for (User user : content) {
-			
+
 			if (usersReceivedRequestFrom.contains(user)) {
 				listUsers.add(user);
 			}
 		}
-		
+
 		return listUsers;
 	}
 
-
-
-
-
-	public Set<User> getFriends(User currentlyUser, List<User> content) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	
 	public List<User> getUsersWhoReceivedFriendshipInvitationFromCurrentUser(User currentUser) {
 		List<User> usersList = new LinkedList<User>();
 
@@ -84,15 +70,14 @@ public class InvitationFriendshipService {
 		return usersList;
 	}
 
-
 	public InvitationFriendship getInvitationById(Long idInvitation) {
 		return invitationFriendshipRepository.findById(idInvitation).get();
 	}
 
-
 	public void setInvitationAcceptedIfExiststs(User currentUser, Long idNewFriend) {
-		Optional<InvitationFriendship> oi = invitationFriendshipRepository.getInvitationBySenderAndReceiverID(currentUser, idNewFriend);
-		
+		Optional<InvitationFriendship> oi = invitationFriendshipRepository
+				.getInvitationBySenderAndReceiverID(currentUser, idNewFriend);
+
 		if (oi.isPresent())
 			oi.get().setAceptada(true);
 	}

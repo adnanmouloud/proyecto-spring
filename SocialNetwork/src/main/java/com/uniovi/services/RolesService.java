@@ -7,7 +7,6 @@ public class RolesService {
 
 	String[] roles = { "ROLE_STANDARD", "ROLE_ADMIN" };
 
-
 	public String[] getRoles() {
 		return roles;
 	}

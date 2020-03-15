@@ -50,29 +50,22 @@ public class TestsSocialNetwork {
 		return driver;
 	}
 
-	// Antes de cada prueba se navega al URL home de la aplicaciónn
-	// "driver.navigate()" de todos los tests
-
 	@Before
 	public void setUp() {
 		driver.navigate().to(URL);
 	}
 
-	// Después de cada prueba se borran las cookies del navegador
 	@After
 	public void tearDown() {
 		driver.manage().deleteAllCookies();
 	}
 
-	// Antes de la primera prueba
 	@BeforeClass
 	static public void begin() {
 	}
 
-	// Al finalizar la última prueba
 	@AfterClass
 	static public void end() {
-		// Cerramos el navegador al finalizar las pruebas
 		driver.quit();
 	}
 
@@ -566,7 +559,7 @@ public class TestsSocialNetwork {
 		PO_View.checkTagsLanguages(driver, "user.authenticated", 1);
 
 		// Comprobación que sale el texto de "Descripción" en Español e Inglés
-		PO_View.checkTagsLanguages(driver, "details.description", 1);
+		PO_View.checkTagsLanguages(driver, "private.web", 1);
 
 		// ******************** USER/LIST ********************
 		// Comprobación que sale el texto de "Nombre:" en Español e Inglés
