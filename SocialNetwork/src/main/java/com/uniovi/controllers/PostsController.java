@@ -1,5 +1,8 @@
 package com.uniovi.controllers;
 
+import java.security.Principal;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -16,7 +18,6 @@ import com.uniovi.entities.User;
 import com.uniovi.services.PostsService;
 import com.uniovi.services.UsersService;
 import com.uniovi.validators.NewPostFormValidator;
-import com.uniovi.validators.SignUpFormValidator;
 
 @Controller
 public class PostsController {
@@ -32,6 +33,15 @@ public class PostsController {
 	
 	@Autowired
 	private NewPostFormValidator newPostFormValidator;
+	
+	
+	@RequestMapping("/post/list")
+	public String getList(Model model, Principal principal) {
+		User currentUser = usersService.getUserByEmail( principal.getName() );
+		List<Post> listaPosts = postsService.findPostsCurrentUser( currentUser );
+		model.addAttribute("postsList", listaPosts);
+		return "post/list";
+	}
 
 	@RequestMapping(value = "/post/add")
 	public String getMark(Model model) {
