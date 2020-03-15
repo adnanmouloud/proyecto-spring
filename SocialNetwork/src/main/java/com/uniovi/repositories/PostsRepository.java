@@ -12,6 +12,6 @@ public interface PostsRepository extends CrudRepository<Post, Long> {
 	
 	
 	@Query("SELECT u.posts FROM User u WHERE u = ?1")
-	List<Post> findPostsCurrentUser(User currentUser);
+	List<Post> findPostsForUser(User user);
 
 }

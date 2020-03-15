@@ -18,17 +18,17 @@ public class FriendshipService {
 
 	@Autowired
 	private UsersRepository usersRepository;
-	
+
 	@Autowired
 	private FriendshipRepository friendshipRepository;
 
 	public void createFriendship(User friend1, Long idNewFriend) {
 		User friend2 = usersRepository.findById(idNewFriend).get();
 		Friendship friendship = new Friendship(friend1, friend2);
-		
+
 		friendshipRepository.save(friendship);
 	}
-	
+
 	public void addFriendship(Friendship fr) {
 		friendshipRepository.save(fr);
 	}
@@ -36,11 +36,11 @@ public class FriendshipService {
 	public void createFriendship(Long idNewFriend, User friend1) {
 		User friend2 = usersRepository.findById(idNewFriend).get();
 		Friendship friendship = new Friendship(friend2, friend1);
-		
+
 		friendshipRepository.save(friendship);
 	}
 
-	public Object getFriendsOfCurrentUser(User currentUser) {
+	public List<User> getFriendsOfCurrentUser(User currentUser) {
 		List<User> usersList = new LinkedList<User>();
 
 		for (Friendship i : friendshipRepository.findAllFriendsOfUser(currentUser))

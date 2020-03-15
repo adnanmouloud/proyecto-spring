@@ -19,8 +19,8 @@ public class PostsService {
 		postsRepository.save(post);
 	}
 
-	public List<Post> findPostsCurrentUser(User currentUser) {
-		return postsRepository.findPostsCurrentUser( currentUser );
+	public List<Post> findPostsForUser(User currentUser) {
+		return postsRepository.findPostsForUser( currentUser );
 	}
 
 }

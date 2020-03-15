@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="fragments/head" />
+<body>
+	<!-- Barra de Navegación superior -->
+	<nav th:replace="fragments/nav" />
+	<div class="container">
+		<h2 id="listaPublicaciones">Publicaciones</h2>
+		<p>
+			Estas son las publicaciones que <span id="friendName"
+				th:text="${friend.fullName}" th:inline="text"> </span> tiene
+			actualmente:
+		</p>
+
+		<div class="table">
+			<table class="table table-bordered" th:fragment="tablePosts"
+				id="tablePosts">
+				<tbody>
+					<table class="table" th:each="post : ${postsList}"
+						th:id="${'post' + post.id}">
+						<tr class="p-3 mb-2 bg-dark text-white">
+							<td th:text="${post.title}"></td>
+							<td th:text="${post.date}"></td>
+
+							<td class="col-md-1"></td>
+							<td class="col-md-1"></td>
+						</tr>
+						<tr>
+							<td colspan="4" th:text="${post.text}"></td>
+						</tr>
+					</table>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<footer th:replace="fragments/footer" />
+</body>
+</html>

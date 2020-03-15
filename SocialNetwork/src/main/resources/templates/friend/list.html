@@ -5,8 +5,10 @@
 	<!-- Barra de Navegación superior -->
 	<nav th:replace="fragments/nav" />
 	<div class="container">
-		<h2 id="listaAmigos" th:text="#{users.list.requestFriendship.alreadyFriends}">Amigos</h2>
-		<p th:text="#{friends.now}">Estos son los amigos que tienes actualmente:</p>
+		<h2 id="listaAmigos"
+			th:text="#{users.list.requestFriendship.alreadyFriends}">Amigos</h2>
+		<p th:text="#{friends.now}">Estos son los amigos que tienes
+			actualmente:</p>
 		<button type="button" id="updateButton" class="btn btn-default">Actualizar</button>
 		<script>
 			$("#updateButton").click(function() {
@@ -21,7 +23,6 @@
 					<tr>
 
 						<th th:text="#{name}">Nombre</th>
-						<th th:text="#{surname}">Apellidos</th>
 						<th th:text="#{email}">Email</th>
 						<th class="col-md-1"></th>
 						<th class="col-md-1"></th>
@@ -29,10 +30,11 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="friend : ${friendsList}" th:id="${'friend' + friend.id}">
+					<tr th:each="friend : ${friendsList}"
+						th:id="${'friend' + friend.id}">
 
-						<td th:text="${friend.name}">Nombre del usuario</td>
-						<td th:text="${friend.lastName}">Apellidos del usuario</td>
+						<td><a th:href="${'/post/listFriend/' + friend.id}"
+							th:text="${friend.fullName}">Nombre completo del usuario</a></td>
 						<td th:text="${friend.email}">Email del usuario</td>
 
 						<td class="col-md-1"></td>
