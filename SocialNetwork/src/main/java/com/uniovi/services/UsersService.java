@@ -1,10 +1,8 @@
 package com.uniovi.services;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -14,8 +12,6 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import com.uniovi.entities.InvitationFriendship;
 import com.uniovi.entities.User;
 import com.uniovi.repositories.UsersRepository;
 
@@ -88,5 +84,9 @@ public class UsersService {
 		users = usersRepository.searchUsersByNameOrSurnameorEmail(pageable, searchText);
 
 		return users;
+	}
+	
+	public void deleteAllUsers() {
+		usersRepository.deleteAll();
 	}
 }

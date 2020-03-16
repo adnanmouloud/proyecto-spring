@@ -5,8 +5,6 @@ import java.util.List;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import com.uniovi.tests.utils.SeleniumUtils;
-
 public class PO_FriendshipView extends PO_View {
 
 	/**
